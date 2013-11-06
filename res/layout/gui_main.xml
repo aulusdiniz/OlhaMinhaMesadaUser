@@ -5,6 +5,14 @@
     android:orientation="horizontal"
     android:background="@drawable/fundo" > 
 
+    <fragment
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        class="com.OMM.application.user.view.ParlamentarListFragment"
+        android:layout_margin="12dp"
+        android:id="@+id/list_fragment"
+        ></fragment>
+    
     <Button
         android:id="@+id/btn_politico_main"
         android:layout_width="52dp"
