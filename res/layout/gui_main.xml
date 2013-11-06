@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gui_main" >
-    
-    
+    android:orientation="horizontal" >
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_pesquisar_parlamentar"
         android:layout_width="52dp"
         android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/politico" />
+
+    <Button
+        android:id="@+id/btn_sobre_main"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
         android:layout_marginRight="12.3dp"
-        android:layout_toLeftOf="@+id/button1"
         android:background="@drawable/sobre" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btn_politico_main"
         android:layout_width="52dp"
         android:layout_height="48dp"
-        android:layout_above="@+id/button2"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="41.5dp"
-        android:layout_marginRight="56dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginRight="50dp"
         android:background="@drawable/politico" />
 
-</RelativeLayout>
+</LinearLayout>
