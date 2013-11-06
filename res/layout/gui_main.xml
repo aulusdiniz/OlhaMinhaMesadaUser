@@ -2,27 +2,49 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gui_main" >
-    
-    
+    android:orientation="horizontal"
+    android:background="@drawable/fundo" > 
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_politico_main"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:layout_above="@+id/ic_rolagem1"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/politico" />
+
+    <Button
+        android:id="@+id/btn_sobre_main"
         android:layout_width="52dp"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="12.3dp"
-        android:layout_toLeftOf="@+id/button1"
+        android:layout_toLeftOf="@+id/ic_rolagem1"
         android:background="@drawable/sobre" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btn_ranking_main"
         android:layout_width="52dp"
         android:layout_height="48dp"
-        android:layout_above="@+id/button2"
+        android:layout_above="@+id/btn_sobre_main"
+        android:layout_alignLeft="@+id/btn_sobre_main"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="18dp"
+        android:background="@drawable/ranking" />
+
+    <Button
+        android:id="@+id/btn_pesquisar_parlamentar"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:layout_above="@+id/btn_ranking_main"
+        android:layout_toRightOf="@+id/btn_ranking_main"
+        android:background="@drawable/pesquisa" />
+
+    <Button
+        android:id="@+id/ic_rolagem1"
+        android:layout_width="130dp"
+        android:layout_height="124dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="41.5dp"
-        android:layout_marginRight="56dp"
-        android:background="@drawable/politico" />
+        android:background="@drawable/ic_rolagem1" />
 
 </RelativeLayout>

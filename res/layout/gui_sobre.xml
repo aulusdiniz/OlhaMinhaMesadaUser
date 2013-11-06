@@ -2,25 +2,68 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gui_sobre" >
-
+    android:orientation="vertical" 
+    android:background="@drawable/fundo" >
+  
+    <TextView
+        android:id="@+id/widget32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Com essa aplicação seremos salvos...."
+        android:textSize="15sp"
+        android:textStyle="bold|italic" />
+    
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_politico_main"
         android:layout_width="52dp"
         android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/ic_rolagem1"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="89dp"
-        android:layout_marginRight="55.5dp"
         android:background="@drawable/politico" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btn_sobre_main"
         android:layout_width="52dp"
         android:layout_height="48dp"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/search" />
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/ic_rolagem1"
+        android:background="@drawable/sobre" />
 
+    <Button
+        android:id="@+id/btn_ranking_main"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:layout_above="@+id/btn_sobre_main"
+        android:layout_alignLeft="@+id/btn_sobre_main"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="18dp"
+        android:background="@drawable/ranking" />
+
+    <Button
+        android:id="@+id/btn_pesquisar_parlamentar"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:layout_above="@+id/btn_ranking_main"
+        android:layout_toRightOf="@+id/btn_ranking_main"
+        android:background="@drawable/pesquisa" />
+
+    <Button
+        android:id="@+id/ic_rolagem1"
+        android:layout_width="130dp"
+        android:layout_height="124dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_rolagem4" />
+
+    <TextView
+        android:id="@+id/widget33"
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/widget32"
+        android:text="Operação SERASA"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
+    
 </RelativeLayout>
+

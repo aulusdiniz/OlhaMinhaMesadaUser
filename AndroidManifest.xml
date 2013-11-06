@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.OMM.application.user.view"
+    package="com.OMM.application.user"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="8"
         android:targetSdkVersion="18" />
 
     <application
@@ -13,36 +12,19 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.OMM.application.user.view.SplashScreen"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity            
-            android:name="com.OMM.application.user.view.GuiMain"
-            android:theme="@android:style/Theme.Holo.Light"
-            android:label="@string/ab_pesquisar" >   
-            <meta-data android:name="android.app.searchable"
-            android:resource="@xml/searchable" />  
-            <intent-filter>
-        <action android:name="android.intent.action.SEARCH" />
-    </intent-filter>       
-        </activity>
-        <activity
-            android:name="com.OMM.application.user.view.GuiParlamentar"
-            android:theme="@android:style/Theme.Holo.Light"
-            android:label="@string/ab_perfil_do_parlamentar" >            
-        </activity>
-        <activity
-            android:name="com.OMM.application.user.view.GuiSobre"
-            android:theme="@android:style/Theme.Holo.Light"
-            android:label="@string/ab_sobre" >            
-        </activity>        
+        
+        
+        <activity android:name=".view.GuiMain">
+			<intent-filter>
+			<action android:name="android.intent.action.MAIN"/>
+			<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		
+		<activity android:name=".view.GuiParlamentar"/>
+		<activity android:name=".view.GuiSobre"/>
+		<activity android:name=".view.GuiBuscarParlamentar"/>
+		    
     </application>
 
 </manifest>

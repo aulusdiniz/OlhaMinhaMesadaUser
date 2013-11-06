@@ -1,109 +1,117 @@
 package com.OMM.application.user.view;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.util.List;
+import java.sql.SQLClientInfoException;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import com.OMM.application.user.R;
+import com.OMM.application.user.dao.ParlamentarUserDao;
+import com.OMM.application.user.pojo.ParlamentarPO;
 
-import com.OMM.application.user.helper.JSONHelper;
-import com.OMM.application.user.model.Parlamentar;
+
 
 import android.app.Activity;
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.os.AsyncTask;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.SearchView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class GuiMain extends Activity {
-
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-
+	protected void onCreate (Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gui_main);
-
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-		Button btn = (Button) findViewById(R.id.button1);
-		final MediaPlayer mp = MediaPlayer.create(this, R.raw.click);
-		btn.setOnClickListener(new View.OnClickListener() {
-
+	
+		/*
+		//inicializa o banco e cria se ele nao existir 
+		ParlamentarUserDao dao = new ParlamentarUserDao(getBaseContext());
+		ParlamentarPO po=new ParlamentarPO("001","Ramon Cruz da silva");
+		dao.insert(po);
+		*/
+		
+		/*Criando um banco sqlite na forma mais simples 
+		sem as boas praticas de programação
+		
+		SQLiteDatabase db= openOrCreateDatabase("devmedia.db",Context.MODE_PRIVATE,null);
+		
+		/*esse banco criado fica na pasta databese da aplicação
+		e pode ser acessado usando o android Explorer do eclipse
+		note que a criação do banco esta sendo manual.
+		Detalhe: Se voce nao colocar o comando IF NOT EXISTS  no inicio 
+		do comando CREATE TABLE o aplicativo executara apenas uma vez
+		e dará um erro na segunda execucao, isso acontence porque jah existe 
+		um banco de dados com a tabela no aparelho celular e nao eh necessario
+		criar a tabela novamente, o problema deste medoto eh o acoplamento,
+		desta forma vc acopla a interface direto com o banco de dados 
+		e isso não eh uma boa coisa , a manutencao fica muito complicado, 
+		entao vamos usar os padroes de projeto ..nesse caso usaremos o padrao
+		DAO. comece criando uma classe para tratar do bando que extende da classe
+		SQLiteOpenHelper 
+		
+		esse parte do código foi substituida pela classe DB, ela que ficarah responsavel
+		pelo banco de dados
+		
+		
+		
+		StringBuilder strb= new StringBuilder();
+		strb.append("CREATE TABLE  IF NOT EXISTS [clientes] (");
+		strb.append("[ID_CLIENTE] INTEGER PRIMARY KEY AUTOINCREMENT,");
+		strb.append("  [NOME] VARCHAR(30),");
+		strb.append("[EMAIL] VARCHAR(40), ");
+		strb.append(" [ENDERECO] VARCHAR(50),");
+		strb.append("[NUMERO] VARCHAR(10));");
+		db.execSQL(strb.toString());
+		*/
+		
+		
+		
+		/*começando a trabalhar com captura de eventos 
+		comece recuperando os elementos do layout como botoes 
+		campos de texto e etc.
+		*/
+		
+		Button btn_sobre_main=(Button)findViewById(R.id.btn_sobre_main);
+		Button btn_politico_main =(Button)findViewById(R.id.btn_politico_main);
+		Button btn_pesquisar_parlamentar=(Button) findViewById(R.id.btn_pesquisar_parlamentar);
+				
+		//agora vc deve implementar os metodos de captura de eventos 
+		
+		btn_sobre_main.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-
-				mp.start();
-				Intent mudarTela = new Intent(GuiMain.this,
-						GuiParlamentar.class);
-				startActivity(mudarTela);
-				GuiMain.this.finish();
+				//esse comando chama outra activity
+				startActivity(new Intent(getBaseContext(),GuiSobre.class));//corrigir a classe 
+				
 			}
 		});
-
-		Button sobre = (Button) findViewById(R.id.button2);
-		final MediaPlayer mpl = MediaPlayer.create(this, R.raw.click);
-		sobre.setOnClickListener(new View.OnClickListener() {
-
+		
+		btn_politico_main.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-
-				mpl.start();
-				Intent mudarTela = new Intent(GuiMain.this, GuiSobre.class);
-				startActivity(mudarTela);
-				GuiMain.this.finish();
+				
+				Toast.makeText(getBaseContext(),"Nao implementado", Toast.LENGTH_SHORT).show();
+				
+				
+			}
+		});
+		
+		btn_pesquisar_parlamentar.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//esse comando chama outra activity
+				startActivity(new Intent(getBaseContext(),GuiBuscarParlamentar.class));
+				
 			}
 		});
 		
 		
 		
-		handleIntent(getIntent());
 	}
 
-	@Override
-	protected void onNewIntent(Intent intent) {
-
-		handleIntent(intent);
-	}
-
-	private void handleIntent(Intent intent) {
-
-		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-			String query = intent.getStringExtra(SearchManager.QUERY);
-			// use the query to search your data somehow
-		}
-
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		getMenuInflater().inflate(R.menu.options_menu, menu);
-
-		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-		SearchView searchView = (SearchView) menu.findItem(R.id.search)
-				.getActionView();
-		searchView.setSearchableInfo(searchManager
-				.getSearchableInfo(getComponentName()));
-
-		return true;
-
-	}
 }
-

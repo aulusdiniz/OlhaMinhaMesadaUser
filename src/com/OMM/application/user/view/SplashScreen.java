@@ -1,5 +1,7 @@
 package com.OMM.application.user.view;
 
+import com.OMM.application.user.R;
+
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;

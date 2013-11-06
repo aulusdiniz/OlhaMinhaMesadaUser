@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/fundo" >
+
+    <ImageView
+        android:id="@+id/imageV_parlamentar_listagem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/politico" />
+
+    <TextView
+        android:id="@+id/textV_listar_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageV_parlamentar_listagem"
+        android:layout_marginBottom="21dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/imageV_parlamentar_listagem"
+        android:text="Ramon"
+        android:textSize="25sp" />
+    
+    <Button
+        android:id="@+id/btn_politico_main"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:layout_above="@+id/ic_rolagem1"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/politico" />
+
+    <Button
+        android:id="@+id/btn_sobre_main"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/ic_rolagem1"
+        android:background="@drawable/sobre" />
+
+    <Button
+        android:id="@+id/btn_ranking_main"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:layout_above="@+id/btn_sobre_main"
+        android:layout_alignLeft="@+id/btn_sobre_main"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="18dp"
+        android:background="@drawable/ranking" />
+
+    <Button
+        android:id="@+id/btn_pesquisar_parlamentar"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:layout_above="@+id/btn_ranking_main"
+        android:layout_toRightOf="@+id/btn_ranking_main"
+        android:background="@drawable/pesquisa" />
+
+    <Button
+        android:id="@+id/ic_rolagem1"
+        android:layout_width="130dp"
+        android:layout_height="124dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_rolagem2" />
+
+</RelativeLayout>
