@@ -25,10 +25,18 @@ public class HttpConnection {
 	
 	public Parlamentar performRequest(){
 		
-		Parlamentar parlamentar;		
+		Parlamentar parlamentar=null;		
 			
 			final ResponseHandler<String> responseHandler = new ResponseHandler<String>(){
 				
+				public String handleResponse(HttpResponse response) throws IOException{
+					StatusLine status = response.getStatusLine();
+					
+					HttpEntity entity = response.getEntity();
+					String result = inputStreamToString(entity.getContent());
+					return result;				
+				}
+
 				private String inputStreamToString(InputStream stream) throws IOException{
 					
 					BufferedReader br = new BufferedReader(new InputStreamReader(stream));
@@ -45,7 +53,8 @@ public class HttpConnection {
 	};	
 	
 	return parlamentar;
-	}
+	
+	
 	
 	}
 }
