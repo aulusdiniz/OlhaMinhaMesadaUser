@@ -60,8 +60,8 @@ public final class R {
         public static final int fragment_parlamentar=0x7f030000;
         public static final int gui_list_parlamentar=0x7f030001;
         public static final int gui_listagem=0x7f030002;
-        public static final int gui_main=0x7f030003;
-        public static final int gui_parlamentar=0x7f030004;
+        public static final int gui_parlamentar=0x7f030003;
+        public static final int gui_ranking=0x7f030004;
         public static final int gui_sobre=0x7f030005;
         public static final int splash_screen=0x7f030006;
     }

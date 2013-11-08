@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.OMM.application.user.R;
 import com.OMM.application.user.controller.ParlamentarUserController;
 import com.OMM.application.user.model.Parlamentar;
 
@@ -29,7 +30,7 @@ public class ParlamentarListFragment extends ListFragment {
 
 		List<Parlamentar> list = new ArrayList<Parlamentar>();
 		MyAdapter adapter = new MyAdapter(getActivity(),
-				android.R.layout.simple_list_item_1, list);
+				R.layout.fragment_parlamentar, list);
 
 		setListAdapter(adapter);
 		setRetainInstance(true);

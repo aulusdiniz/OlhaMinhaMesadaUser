@@ -23,7 +23,7 @@ public class GuiMain extends Activity {
 	protected void onCreate (Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.gui_main);
+		setContentView(R.layout.gui_parlamentar);
 	
 		/*
 		//inicializa o banco e cria se ele nao existir 
