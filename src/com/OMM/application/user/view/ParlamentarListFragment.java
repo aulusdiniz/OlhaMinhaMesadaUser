@@ -10,10 +10,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.OMM.application.user.R;
+import com.OMM.application.user.adapters.ParlamentarSeguidoAdapter;
 import com.OMM.application.user.controller.ParlamentarUserController;
+import com.OMM.application.user.dao.ParlamentarUserDao;
 import com.OMM.application.user.model.Parlamentar;
+import com.OMM.application.user.pojo.ParlamentarPO;
 
 public class ParlamentarListFragment extends ListFragment {
 
@@ -21,15 +25,16 @@ public class ParlamentarListFragment extends ListFragment {
 
 	ParseTask parseTask;
 
-	static ParlamentarUserController pc = ParlamentarUserController
-			.getInstance();
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
-
-		List<Parlamentar> list = new ArrayList<Parlamentar>();
-		MyAdapter adapter = new MyAdapter(getActivity(),
+		ParlamentarUserDao dao = new ParlamentarUserDao(getActivity());
+		//TODO construir chamada dao parlamentares seguidos
+		List<ParlamentarPO> list = dao.getAll();
+		
+		ParlamentarSeguidoAdapter adapter = new ParlamentarSeguidoAdapter(getActivity(),
 				R.layout.fragment_parlamentar, list);
 
 		setListAdapter(adapter);
@@ -37,9 +42,11 @@ public class ParlamentarListFragment extends ListFragment {
 
 	}
 
-	public void onListParlamentarClick(ListView l, View v, int position, long id) {
-		Parlamentar parlamentar = (Parlamentar) getListAdapter().getItem(
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		ParlamentarPO parlamentar = (ParlamentarPO) getListAdapter().getItem(
 				position);
+		Toast.makeText(getActivity(), "toquei!", Toast.LENGTH_SHORT).show();
 		updateDetail(parlamentar);
 
 	}
@@ -86,12 +93,23 @@ public class ParlamentarListFragment extends ListFragment {
 		parseTask.setFragment(null);
 
 	}
-	
+	/*
+	 * Responsavel por chamar uma activity, 
+	 * a natureza do fragment nao permite q ele 
+	 * chame activities, enta eh preciso criar 
+	 * uma interface para outra activity fazer a chamada,
+	 * logo... a Main faz.
+	 */
 	public interface OnParlamentarSelectedListener{
 		public void OnParlamentarSelected(String nome);
 	}
 	
 
+	/*
+	 * Faz a chamada para concatenar activities 
+	 * esse metodo so vai funcionar se a interface
+	 * anterior for implementada
+	 */
 	@Override
 	public void onAttach(Activity activity){
 		super.onAttach(activity);
@@ -104,9 +122,9 @@ public class ParlamentarListFragment extends ListFragment {
 		}
 	}
 
-	public void updateDetail(Parlamentar parlamentar){
+	public void updateDetail(ParlamentarPO parlamentar){
 		
-		listener.OnParlamentarSelected(parlamentar.getNome());
+		listener.OnParlamentarSelected(parlamentar.getNome_parlamentar());
 	}
 
 
