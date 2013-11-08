@@ -1,4 +1,4 @@
-package com.OMM.application.user.requests;
+/*package com.OMM.application.user.requests;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,7 +23,7 @@ import com.OMM.application.user.model.Parlamentar;
 
 public class HttpConnection {
 
-	public Parlamentar performRequest() {
+	public void performRequest() {
 
 		Parlamentar parlamentar = null;
 
@@ -61,7 +61,7 @@ public class HttpConnection {
 				try {
 					DefaultHttpClient client = new DefaultHttpClient();
 					HttpGet httpMethod = new HttpGet(
-							"http://192.168.1.8:8080/OlhaMinhaMesadaServer/parlamentar?nome=Paulo");
+							"http://192.168.1.8:8080/OlhaMiyhnbnhaMesadaServer/parlamentar?nome=Paulo");
 					client.execute(httpMethod, responseHandler);
 
 				} catch (ClientProtocolException e) {
@@ -72,7 +72,7 @@ public class HttpConnection {
 			}
 		}.start();
 		
-		return parlamentar;
+		//return result;
 	}	
 
-}
+}*/

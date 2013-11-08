@@ -37,12 +37,14 @@ public final class R {
         public static final int btn_pesquisar_parlamentar=0x7f0a0004;
         public static final int btn_politico_main=0x7f0a0006;
         public static final int btn_sobre_main=0x7f0a0005;
+        public static final int button1=0x7f0a0007;
         public static final int editT_buscar_parlamentar=0x7f0a0000;
         public static final int imageV_parlamentar_listagem=0x7f0a0002;
-        public static final int search=0x7f0a0009;
+        public static final int output=0x7f0a0008;
+        public static final int search=0x7f0a000b;
         public static final int textV_listar_nome=0x7f0a0003;
-        public static final int widget32=0x7f0a0007;
-        public static final int widget33=0x7f0a0008;
+        public static final int widget32=0x7f0a0009;
+        public static final int widget33=0x7f0a000a;
     }
     public static final class layout {
         public static final int gui_list_parlamentar=0x7f030000;
