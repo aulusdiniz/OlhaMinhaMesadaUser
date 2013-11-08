@@ -26,14 +26,16 @@ import android.widget.Toast;
 
 public class GuiBuscarParlamentar extends ListActivity  {
 	
-	private SearchView mSearchView;
 	
+	private int RETORNO_FILTRO=1;
+	private String nomeParlamentar=null;
 	@Override
 	protected void onCreate (Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+		
 		ParlamentarUserDao dao = new ParlamentarUserDao(getBaseContext());
+		
 		setListAdapter(new ParlamentarAdapter(getBaseContext(), dao.getAll()));
 		
 		
@@ -77,12 +79,28 @@ public class GuiBuscarParlamentar extends ListActivity  {
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch (item.getItemId()) {
-		case com.OMM.application.user.R.id.filtro:startActivity(new Intent(getBaseContext(),Filtro_parlamentar.class));break;
+		case com.OMM.application.user.R.id.filtro:
+								{							
+									startActivityForResult(new Intent(getBaseContext(),Filtro_parlamentar.class), RETORNO_FILTRO);break;
+								}
 			default:
 			break;
 		}
 		
 		return super.onOptionsItemSelected(item);
+	}
+	@Override
+	protected void onActivityResult (int requestCode, int resultCode, Intent data)
+	{
+		if(RETORNO_FILTRO==requestCode)
+		{
+			if(resultCode==RESULT_OK)
+			{
+				
+				 nomeParlamentar=data.getStringExtra("txt").toString();
+				 
+			}
+		}
 	}
 	
 	/*
@@ -94,6 +112,19 @@ public class GuiBuscarParlamentar extends ListActivity  {
 	public void onResume()
 	{
 		super.onResume();
+
+		if(nomeParlamentar!=null)
+		{
+			ParlamentarUserDao dao = new ParlamentarUserDao(getBaseContext());
+			if(dao.getSelected(nomeParlamentar).size()>=1){
+				setListAdapter(new ParlamentarAdapter(getBaseContext(), dao.getSelected(nomeParlamentar)));
+			}else
+			{
+				Toast.makeText(getBaseContext(),"O parlamentar "+nomeParlamentar+" não foi encontrado!", Toast.LENGTH_LONG).show();
+			}
+			
+		}
+		
 		
 		
 	}

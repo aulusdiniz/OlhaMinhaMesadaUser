@@ -84,4 +84,24 @@ public class ParlamentarUserDao {
 		}
 		return lista;
 	}
+	/*
+	 * Metodo utilizado para realizar o filtro de parlamentares
+	 * ele deve ser trabalhado melhor para condição de nao encontrar
+	 * um parlamentar
+	 */
+	public List<ParlamentarPO> getSelected(String nomeParlamentar)
+	{
+		
+		SQLiteDatabase db= new DB(context).getReadableDatabase();
+		Cursor rs = db.rawQuery("SELECT ID_PARLAMENTAR,NOME_PARLAMENTAR FROM PARLAMENTAR WHERE NOME_PARLAMENTAR LIKE '%"+nomeParlamentar+"%'", null);
+		List <ParlamentarPO> lista= new ArrayList<ParlamentarPO>();
+		while(rs.moveToNext())
+		{
+			ParlamentarPO po = new ParlamentarPO(rs.getString(0),rs.getString(1));
+			lista.add(po);
+			
+		}
+		
+		return lista;
+	}
 }
