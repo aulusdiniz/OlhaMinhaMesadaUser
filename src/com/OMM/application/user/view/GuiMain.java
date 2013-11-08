@@ -7,17 +7,23 @@ import com.OMM.application.user.dao.ParlamentarUserDao;
 import com.OMM.application.user.pojo.ParlamentarPO;
 
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class GuiMain extends Activity {
+	//    private SearchView mSearchView;
+	//    private TextView mStatusView;
 	
 	@Override
 	protected void onCreate (Bundle savedInstanceState)
@@ -25,11 +31,23 @@ public class GuiMain extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gui_main);
 	
-		/*
+	/*	
 		//inicializa o banco e cria se ele nao existir 
 		ParlamentarUserDao dao = new ParlamentarUserDao(getBaseContext());
 		ParlamentarPO po=new ParlamentarPO("001","Ramon Cruz da silva");
+		po.setCod_parlamentar("002");
+		po.setNome_parlamentar("Tiririca");
 		dao.insert(po);
+		po.setCod_parlamentar("003");
+		po.setNome_parlamentar("Romario brilha muito no curintias");
+		dao.insert(po);
+		po.setCod_parlamentar("004");
+		po.setNome_parlamentar("Popo");
+		dao.insert(po);
+		po.setCod_parlamentar("005");
+		po.setNome_parlamentar("Arruda");
+		dao.insert(po);
+		
 		*/
 		
 		/*Criando um banco sqlite na forma mais simples 
@@ -112,6 +130,9 @@ public class GuiMain extends Activity {
 		
 		
 		
+		
+		
+		
 	}
-
+	
 }
