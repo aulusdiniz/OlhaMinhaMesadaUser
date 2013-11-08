@@ -22,40 +22,57 @@ import com.OMM.application.user.helper.JSONHelper;
 import com.OMM.application.user.model.Parlamentar;
 
 public class HttpConnection {
-	
-	public Parlamentar performRequest(){
+
+	public Parlamentar performRequest() {
+
+		Parlamentar parlamentar = null;
+
+		final ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
+
+			public String handleResponse(HttpResponse response)
+					throws IOException {
+				StatusLine status = response.getStatusLine();
+
+				HttpEntity entity = response.getEntity();
+				String result = inputStreamToString(entity.getContent());
+				return result;
+			}
+
+			private String inputStreamToString(InputStream stream)
+					throws IOException {
+
+				BufferedReader br = new BufferedReader(new InputStreamReader(
+						stream));
+				StringBuilder sb = new StringBuilder();
+				String line = null;
+
+				while ((line = br.readLine()) != null) {
+					sb.append(line + "\n");
+				}
+				br.close();
+				return sb.toString();
+			}
+
+		};
 		
-		Parlamentar parlamentar=null;		
-			
-			final ResponseHandler<String> responseHandler = new ResponseHandler<String>(){
-				
-				public String handleResponse(HttpResponse response) throws IOException{
-					StatusLine status = response.getStatusLine();
-					
-					HttpEntity entity = response.getEntity();
-					String result = inputStreamToString(entity.getContent());
-					return result;				
-				}
+		new Thread() {
 
-				private String inputStreamToString(InputStream stream) throws IOException{
-					
-					BufferedReader br = new BufferedReader(new InputStreamReader(stream));
-					StringBuilder sb = new StringBuilder();
-					String line = null;
-					
-					while ((line = br.readLine()) != null){
-						sb.append(line + "\n");
-					}					
-					br.close();
-					return sb.toString();
+			public void run() {
+				try {
+					DefaultHttpClient client = new DefaultHttpClient();
+					HttpGet httpMethod = new HttpGet(
+							"http://192.168.1.8:8080/OlhaMinhaMesadaServer/parlamentar?nome=Paulo");
+					client.execute(httpMethod, responseHandler);
+
+				} catch (ClientProtocolException e) {
+					// do sth
+				} catch (IOException e) {
+					// do sth else
 				}
-					
-	};	
-	
-	return parlamentar;
-	
-	
-	
-	}
+			}
+		}.start();
+		
+		return parlamentar;
+	}	
+
 }
-
