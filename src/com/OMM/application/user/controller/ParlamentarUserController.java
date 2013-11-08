@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.OMM.application.user.model.*;
+import com.OMM.application.user.requests.HttpConnection;
 
 
 public class ParlamentarUserController {
@@ -19,6 +20,11 @@ public class ParlamentarUserController {
 		
 	}
 	
+	public Parlamentar buscaParlamentar(){		
+		HttpConnection hc = new HttpConnection();
+		this.parlamentar=hc.performRequest();		
+		return this.parlamentar;
+	}
 	
 	public static ParlamentarUserController getInstance(){
 		
