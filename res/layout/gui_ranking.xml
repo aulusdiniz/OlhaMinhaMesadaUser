@@ -1,27 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-
-</LinearLayout>
-=======
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="@drawable/fundo" > 
-
-    <fragment
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        class="com.OMM.application.user.view.ParlamentarListFragment"
-        android:layout_margin="12dp"
-        android:id="@+id/list_fragment"
-        ></fragment>
+    android:orientation="vertical" 
+   android:background="@drawable/fundo" > 
     
+   
     <Button
         android:id="@+id/btn_politico_main"
         android:layout_width="52dp"
@@ -62,7 +46,7 @@
         android:layout_height="124dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="@drawable/ic_rolagem1" />
+        android:background="@drawable/ic_rolagem3" />
+    
 
 </RelativeLayout>
->>>>>>> 1af16204222ffa7976a545bcb5739f186194134c

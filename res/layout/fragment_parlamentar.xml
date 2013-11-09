@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="horizontal"
+    android:background="@drawable/fragment_parlamentar_fundo" >
+
+  <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+     <ImageView
+         android:id="@+id/parlamentarlistfragment_img_arte"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentTop="true"
+         android:layout_margin="12dp"
+         android:layout_marginLeft="20dp"
+         android:layout_marginTop="106dp"
+         android:src="@drawable/fragment_parlamentar_arte" 
+         android:contentDescription="TODO"/>
+
+     <TextView
+         android:id="@+id/parlamentarlistfragment_txt_nome"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerVertical="true"
+         android:layout_toRightOf="@+id/parlamentarlistfragment_img_arte"
+         android:text="TextView" />
+     </RelativeLayout>
+    
+    </LinearLayout>
