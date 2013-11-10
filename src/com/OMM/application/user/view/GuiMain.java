@@ -144,6 +144,8 @@ public class GuiMain extends Activity {
 		
 	}
 	
+	
+	
 	private void performRequest() {
 		
 		final ResponseHandler<String> responseHandler = new ResponseHandler<String>(){
