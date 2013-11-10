@@ -26,6 +26,12 @@
         android:layout_marginRight="50dp"
         android:background="@drawable/politico" />
     
+    <Button 
+        android:id="@+id/btn_ranking"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        android:background="@drawable/ranking"/>
+    
     <Button
         android:id="@+id/btn_pesquisar_parlamentar"
         android:layout_width="52dp"
