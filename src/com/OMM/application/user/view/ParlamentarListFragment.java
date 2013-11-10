@@ -78,10 +78,8 @@ public class ParlamentarListFragment extends ListFragment {
 	public void updateListContent() {
 
 		if (parseTask == null) {
-
 			parseTask = new ParseTask();
 			parseTask.setFragment(this);
-
 		}
 	}
 
