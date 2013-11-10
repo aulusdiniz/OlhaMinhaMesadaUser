@@ -30,15 +30,17 @@ public class ParlamentarListFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		ParlamentarUserDao dao = new ParlamentarUserDao(getActivity());
-		//TODO construir chamada dao parlamentares seguidos
-		List<ParlamentarPO> list = dao.getAll();
 		
-		ParlamentarSeguidoAdapter adapter = new ParlamentarSeguidoAdapter(getActivity(),
-				R.layout.fragment_parlamentar, list);
-
-		setListAdapter(adapter);
-		setRetainInstance(true);
+		setContextParlamentarSeguido();
+//		ParlamentarUserDao dao = new ParlamentarUserDao(getActivity());
+//		//TODO construir chamada dao parlamentares seguidos
+//		List<ParlamentarPO> list = dao.getAll();
+//		
+//		ParlamentarSeguidoAdapter adapter = new ParlamentarSeguidoAdapter(getActivity(),
+//				R.layout.fragment_parlamentar, list);
+//
+//		setListAdapter(adapter);
+//		setRetainInstance(true);
 
 	}
 
@@ -125,6 +127,16 @@ public class ParlamentarListFragment extends ListFragment {
 		listener.OnParlamentarSelected(parlamentar.getNome_parlamentar());
 	}
 
+	private void setContextParlamentarSeguido(){
+		ParlamentarUserDao dao = new ParlamentarUserDao(getActivity());
+		//TODO construir chamada dao parlamentares seguidos
+		List<ParlamentarPO> list = dao.getAll();
+		
+		ParlamentarSeguidoAdapter adapter = new ParlamentarSeguidoAdapter(getActivity(),
+				R.layout.fragment_parlamentar, list);
 
+		setListAdapter(adapter);
+		setRetainInstance(true);		
+	}
 
 }

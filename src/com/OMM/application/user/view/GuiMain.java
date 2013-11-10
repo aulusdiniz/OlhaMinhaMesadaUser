@@ -99,7 +99,6 @@ public class GuiMain extends Activity implements
 				startActivity(new Intent(getBaseContext(), GuiSobre.class));// corrigir
 																			// a
 																			// classe
-
 			}
 		});
 
