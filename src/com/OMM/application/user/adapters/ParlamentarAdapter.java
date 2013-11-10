@@ -3,6 +3,7 @@ package com.OMM.application.user.adapters;
 import java.util.List;
 
 import com.OMM.application.user.pojo.ParlamentarPO;
+import com.OMM.application.user.R;
 
 
 import android.content.Context;
@@ -52,9 +53,9 @@ public class ParlamentarAdapter extends BaseAdapter{
 		ParlamentarPO po = (ParlamentarPO)getItem(position);
 		
 		LayoutInflater layout = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View v = layout.inflate(com.OMM.application.user.R.layout.gui_listagem, null);
+		View v = layout.inflate(R.layout.gui_listagem, null);
 		
-		TextView PARLAMENTAR =(TextView) v.findViewById(com.OMM.application.user.R.id.textV_listar_nome);
+		TextView PARLAMENTAR =(TextView) v.findViewById(R.id.textV_listar_nome);
 		PARLAMENTAR.setText(po.getNome_parlamentar().toString());
 		
 				

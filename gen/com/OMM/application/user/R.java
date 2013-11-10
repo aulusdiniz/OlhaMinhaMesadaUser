@@ -21,39 +21,46 @@ public final class R {
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int gui_main=0x7f020000;
-        public static final int gui_parlamentar=0x7f020001;
-        public static final int gui_sobre=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int ic_search=0x7f020004;
-        public static final int politico=0x7f020005;
-        public static final int search=0x7f020006;
-        public static final int sobre=0x7f020007;
-        public static final int splashscreen=0x7f020008;
-        public static final int stats=0x7f020009;
+        public static final int fragmentparlamentar_art=0x7f020000;
+        public static final int fragmentparlamentar_fundo=0x7f020001;
+        public static final int gui_main=0x7f020002;
+        public static final int gui_parlamentar=0x7f020003;
+        public static final int gui_sobre=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int ic_search=0x7f020006;
+        public static final int politico=0x7f020007;
+        public static final int search=0x7f020008;
+        public static final int sobre=0x7f020009;
+        public static final int splashscreen=0x7f02000a;
+        public static final int stats=0x7f02000b;
     }
     public static final class id {
-        public static final int btn_busca_parlamentar=0x7f0a0001;
-        public static final int btn_pesquisar_parlamentar=0x7f0a0004;
-        public static final int btn_politico_main=0x7f0a0006;
-        public static final int btn_sobre_main=0x7f0a0005;
-        public static final int editT_buscar_parlamentar=0x7f0a0000;
-        public static final int filtro=0x7f0a0009;
-        public static final int imageV_parlamentar_listagem=0x7f0a0002;
-        public static final int textV_listar_nome=0x7f0a0003;
-        public static final int widget32=0x7f0a0007;
-        public static final int widget33=0x7f0a0008;
+        public static final int btn_busca_parlamentar=0x7f0a0003;
+        public static final int btn_pesquisar_parlamentar=0x7f0a0006;
+        public static final int btn_politico_main=0x7f0a0008;
+        public static final int btn_sobre_main=0x7f0a0007;
+        public static final int editT_buscar_parlamentar=0x7f0a0002;
+        public static final int filtro=0x7f0a000b;
+        public static final int imageV_parlamentar_listagem=0x7f0a0004;
+        public static final int parlamentarlistfragment_img_arte=0x7f0a0000;
+        public static final int parlamentarlistfragment_txt_nome=0x7f0a0001;
+        public static final int search=0x7f0a000c;
+        public static final int textV_listar_nome=0x7f0a0005;
+        public static final int widget32=0x7f0a0009;
+        public static final int widget33=0x7f0a000a;
     }
     public static final class layout {
-        public static final int gui_list_parlamentar=0x7f030000;
-        public static final int gui_listagem=0x7f030001;
-        public static final int gui_main=0x7f030002;
-        public static final int gui_parlamentar=0x7f030003;
-        public static final int gui_sobre=0x7f030004;
-        public static final int splash_screen=0x7f030005;
+        public static final int fragment_parlamentar=0x7f030000;
+        public static final int gui_list_parlamentar=0x7f030001;
+        public static final int gui_listagem=0x7f030002;
+        public static final int gui_main=0x7f030003;
+        public static final int gui_parlamentar=0x7f030004;
+        public static final int gui_sobre=0x7f030005;
+        public static final int splash_screen=0x7f030006;
     }
     public static final class menu {
         public static final int menu_opcoes=0x7f090000;
+        public static final int options_menu=0x7f090001;
     }
     public static final class raw {
         public static final int click=0x7f050000;
