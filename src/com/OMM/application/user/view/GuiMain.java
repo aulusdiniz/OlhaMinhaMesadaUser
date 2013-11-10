@@ -157,14 +157,13 @@ public class GuiMain extends Activity {
 				BufferedReader br = new BufferedReader(new InputStreamReader(entity.getContent()));
 				StringBuilder sb = new StringBuilder();
 				String line = null;
+				
 				while ((line = br.readLine()) != null){
 					sb.append(line + "\n");
 				}
 				
 				br.close();
 				result = sb.toString();
-				
-				
 				
 				Message message = handler.obtainMessage();
 				Bundle bundle = new Bundle();
@@ -176,14 +175,14 @@ public class GuiMain extends Activity {
 			}
 		};
 		
-		this.progressDialog = ProgressDialog.show(this, "Working", "fazendo a parada...");
+		this.progressDialog = ProgressDialog.show(this, "Aguarde", "Fazendo Requisição...");
 		
 		new Thread(){
 			
 			public void run(){
 				try{
 					DefaultHttpClient client = new DefaultHttpClient();
-					HttpGet httpMethod = new HttpGet("http://192.168.1.8:8080/OlhaMinhaMesadaServer/parlamentar?nome=Paulo");
+					HttpGet httpMethod = new HttpGet("http://192.168.1.4:8080/OlhaMinhaMesada/parlamentar?nome=Paulo");
 					client.execute(httpMethod, responseHandler);					
 					
 				}catch (ClientProtocolException e){
@@ -195,8 +194,6 @@ public class GuiMain extends Activity {
 		}.start();
 	}
 
-
-	
 	private final Handler handler = new Handler() {
 
 		@Override
