@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.OMM.application.user.R;
 import com.OMM.application.user.helper.JSONHelper;
+import com.OMM.application.user.model.CotaParlamentar;
 import com.OMM.application.user.model.Parlamentar;
 
 public class GuiMain extends Activity {
@@ -182,7 +183,7 @@ public class GuiMain extends Activity {
 			public void run(){
 				try{
 					DefaultHttpClient client = new DefaultHttpClient();
-					HttpGet httpMethod = new HttpGet("http://192.168.1.4:8080/OlhaMinhaMesada/parlamentar?nome=Paulo");
+					HttpGet httpMethod = new HttpGet("http://192.168.1.4:8080/OlhaMinhaMesada/cota?id=54373");
 					client.execute(httpMethod, responseHandler);					
 					
 				}catch (ClientProtocolException e){
@@ -201,11 +202,11 @@ public class GuiMain extends Activity {
 			progressDialog.dismiss();			
 			String bundleResult = msg.getData().getString("RESPONSE");
 			
-			List<Parlamentar> parlamentares = JSONHelper.listaParlamentarFromJSON(bundleResult);
+			List<CotaParlamentar> ceaps = JSONHelper.listaCotaParlamentarFromJSON(bundleResult);
 			
-			Parlamentar parlamentar = parlamentares.get(0);						
+			String valor = "" + ceaps.get(0).getValorAgosto();
 			
-			output.setText(parlamentar.getNome());
+			output.setText(valor);
 		}
 	};
 }
