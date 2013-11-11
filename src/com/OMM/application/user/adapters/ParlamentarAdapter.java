@@ -31,7 +31,7 @@ public class ParlamentarAdapter extends ArrayAdapter<ParlamentarPO> {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
-		View view = inflater.inflate(R.layout.fragment_parlamentar_seguido, null);
+		View view = inflater.inflate(R.layout.fragment_parlamentar, null);
 		TextView textView = (TextView) view.findViewById(R.id.parlamentarlistfragment_txt_nome);
 		textView.setText(parlamentares.get(position).getNome_parlamentar());
 		return view;
