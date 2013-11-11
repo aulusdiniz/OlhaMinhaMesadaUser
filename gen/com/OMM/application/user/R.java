@@ -34,11 +34,12 @@ public final class R {
         public static final int ic_rolagem4=0x7f02000a;
         public static final int ic_search=0x7f02000b;
         public static final int parlamentar_foto=0x7f02000c;
-        public static final int pesquisa=0x7f02000d;
-        public static final int politico=0x7f02000e;
-        public static final int ranking=0x7f02000f;
-        public static final int sobre=0x7f020010;
-        public static final int splashscreen=0x7f020011;
+        public static final int parlamentar_seguido_foto=0x7f02000d;
+        public static final int pesquisa=0x7f02000e;
+        public static final int politico=0x7f02000f;
+        public static final int ranking=0x7f020010;
+        public static final int sobre=0x7f020011;
+        public static final int splashscreen=0x7f020012;
     }
     public static final class id {
         public static final int btn_busca_parlamentar=0x7f0a0003;

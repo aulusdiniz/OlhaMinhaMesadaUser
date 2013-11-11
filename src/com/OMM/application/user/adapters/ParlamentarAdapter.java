@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.OMM.application.user.R;
-import com.OMM.application.user.model.Parlamentar;
 import com.OMM.application.user.pojo.ParlamentarPO;
 
 public class ParlamentarAdapter extends ArrayAdapter<ParlamentarPO> {

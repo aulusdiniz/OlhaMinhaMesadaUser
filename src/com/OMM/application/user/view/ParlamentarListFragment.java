@@ -1,6 +1,5 @@
 package com.OMM.application.user.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -13,15 +12,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.OMM.application.user.R;
-import com.OMM.application.user.adapters.ParlamentarSeguidoAdapter;
-import com.OMM.application.user.controller.ParlamentarUserController;
+import com.OMM.application.user.adapters.ParlamentarAdapter;
 import com.OMM.application.user.dao.ParlamentarUserDao;
 import com.OMM.application.user.model.Parlamentar;
 import com.OMM.application.user.pojo.ParlamentarPO;
 
-public class ParlamentarSeguidoListFragment extends ListFragment {
+public class ParlamentarListFragment extends ListFragment {
 
-	private OnParlamentarSeguidoSelectedListener listener;
+	private OnParlamentarSelectedListener listener;
 
 	ParseTask parseTask;
 
@@ -33,11 +31,11 @@ public class ParlamentarSeguidoListFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 
 		ParlamentarUserDao dao = new ParlamentarUserDao(getActivity());
-		// TODO construir chamada dao parlamentares seguidos
+		// TODO construir chamada dao parlamentares pelo httprequest
 		List<ParlamentarPO> list = dao.getAll();
 
-		ParlamentarSeguidoAdapter adapter = new ParlamentarSeguidoAdapter(
-				getActivity(), R.layout.fragment_parlamentar_seguido, list);
+		ParlamentarAdapter adapter = new ParlamentarAdapter(getActivity(),
+				R.layout.fragment_parlamentar, list);
 
 		setListAdapter(adapter);
 		setRetainInstance(true);
@@ -56,9 +54,9 @@ public class ParlamentarSeguidoListFragment extends ListFragment {
 	private static class ParseTask extends
 			AsyncTask<String, Void, List<Parlamentar>> {
 
-		private ParlamentarSeguidoListFragment fragment;
+		private ParlamentarListFragment fragment;
 
-		public void setFragment(ParlamentarSeguidoListFragment fragment) {
+		public void setFragment(ParlamentarListFragment fragment) {
 			this.fragment = fragment;
 		}
 
@@ -99,8 +97,8 @@ public class ParlamentarSeguidoListFragment extends ListFragment {
 	 * ele chame activities, enta eh preciso criar uma interface para outra
 	 * activity fazer a chamada, logo... a Main faz.
 	 */
-	public interface OnParlamentarSeguidoSelectedListener {
-		public void OnParlamentarSeguidoSelected(String nome);
+	public interface OnParlamentarSelectedListener {
+		public void OnParlamentarSelected(String nome);
 	}
 
 	/*
@@ -110,18 +108,18 @@ public class ParlamentarSeguidoListFragment extends ListFragment {
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		if (activity instanceof OnParlamentarSeguidoSelectedListener) {
-			listener = (OnParlamentarSeguidoSelectedListener) activity;
+		if (activity instanceof OnParlamentarSelectedListener) {
+			listener = (OnParlamentarSelectedListener) activity;
 		} else {
 			throw new ClassCastException(
 					activity.toString()
-							+ "must implement ParlamentarSeguidoListFragment.OnParlamentarSelectedListner");
+							+ "must implement ParlamentarListFragment.OnParlamentarSelectedListner");
 		}
 	}
 
 	public void updateDetail(ParlamentarPO parlamentar) {
 
-		listener.OnParlamentarSeguidoSelected(parlamentar.getNome_parlamentar());
+		listener.OnParlamentarSelected(parlamentar.getNome_parlamentar());
 	}
 
 }
