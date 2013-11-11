@@ -26,7 +26,6 @@ public class Filtro_parlamentar extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				
 				setResult(RESULT_OK,new Intent().putExtra("txt",pesquisar.getText().toString().toUpperCase()));
 				finish();
 				

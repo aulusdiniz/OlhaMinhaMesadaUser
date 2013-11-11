@@ -3,11 +3,12 @@
     android:background="@drawable/fragmentparlamentar_fundo"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
         <ImageView
             android:id="@+id/parlamentarlistfragment_img_arte"
@@ -15,7 +16,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="12dp"
             android:contentDescription="TODO"
             android:src="@drawable/parlamentar_foto" />
 
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="81dp"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/parlamentarlistfragment_img_arte"
             android:text="TextView" />
         

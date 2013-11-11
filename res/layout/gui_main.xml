@@ -2,18 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
-
-    <fragment
-        android:id="@+id/list_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        class="com.OMM.application.user.view.ParlamentarListFragment" />
+    android:orientation="horizontal"
+    android:background="@drawable/fundo" >
+    
+	<FrameLayout
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="6dp" 
+	android:layout_marginRight="6dp" />
 
     <Button
-        android:id="@+id/img_ic_rolagem1"
+        android:id="@+id/btn_ic_rolagem1"
         android:layout_width="125dp"
         android:layout_height="124dp"
         android:layout_alignParentBottom="true"
@@ -43,14 +43,14 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/img_ic_rolagem1"
+        android:layout_toLeftOf="@+id/btn_ic_rolagem1"
         android:background="@drawable/sobre" />
 
     <Button
         android:id="@+id/btn_politico_main"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_above="@+id/img_ic_rolagem1"
+        android:layout_above="@+id/btn_ic_rolagem1"
         android:layout_alignParentRight="true"
         android:background="@drawable/politico" />
 

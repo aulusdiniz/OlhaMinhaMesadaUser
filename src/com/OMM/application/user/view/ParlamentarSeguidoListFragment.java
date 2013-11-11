@@ -19,17 +19,20 @@ import com.OMM.application.user.dao.ParlamentarUserDao;
 import com.OMM.application.user.model.Parlamentar;
 import com.OMM.application.user.pojo.ParlamentarPO;
 
-public class ParlamentarListFragment extends ListFragment {
+public class ParlamentarSeguidoListFragment extends ListFragment {
 
 	private OnParlamentarSelectedListener listener;
 
 	ParseTask parseTask;
-
+	
+	private String tipo_lista; 
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
+		
+		
 		
 		setContextParlamentarSeguido();
 //		ParlamentarUserDao dao = new ParlamentarUserDao(getActivity());
@@ -56,9 +59,9 @@ public class ParlamentarListFragment extends ListFragment {
 	private static class ParseTask extends
 			AsyncTask<String, Void, List<Parlamentar>> {
 
-		private ParlamentarListFragment fragment;
+		private ParlamentarSeguidoListFragment fragment;
 
-		public void setFragment(ParlamentarListFragment fragment) {
+		public void setFragment(ParlamentarSeguidoListFragment fragment) {
 			this.fragment = fragment;
 		}
 
@@ -133,7 +136,7 @@ public class ParlamentarListFragment extends ListFragment {
 		List<ParlamentarPO> list = dao.getAll();
 		
 		ParlamentarSeguidoAdapter adapter = new ParlamentarSeguidoAdapter(getActivity(),
-				R.layout.fragment_parlamentar, list);
+				R.layout.fragment_parlamentar_seguido, list);
 
 		setListAdapter(adapter);
 		setRetainInstance(true);		

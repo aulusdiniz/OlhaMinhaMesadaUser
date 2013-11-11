@@ -36,7 +36,7 @@ public class GuiBuscarParlamentar extends ListActivity  {
 		
 		ParlamentarUserDao dao = new ParlamentarUserDao(getBaseContext());
 		
-		setListAdapter(new ParlamentarAdapter(getBaseContext(), dao.getAll()));
+		//setListAdapter(new ParlamentarAdapter(getBaseContext(), dao.getAll()));
 		
 		
 				
@@ -117,7 +117,7 @@ public class GuiBuscarParlamentar extends ListActivity  {
 		{
 			ParlamentarUserDao dao = new ParlamentarUserDao(getBaseContext());
 			if(dao.getSelected(nomeParlamentar).size()>=1){
-				setListAdapter(new ParlamentarAdapter(getBaseContext(), dao.getSelected(nomeParlamentar)));
+				//setListAdapter(new ParlamentarAdapter(getBaseContext(), dao.getSelected(nomeParlamentar)));
 			}else
 			{
 				Toast.makeText(getBaseContext(),"O parlamentar "+nomeParlamentar+" não foi encontrado!", Toast.LENGTH_LONG).show();
