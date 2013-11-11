@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,10 @@ public class GuiMain extends Activity implements
 	// private SearchView mSearchView;
 	// private TextView mStatusView;
 
+	private static final String SEGUIDOS = "Parlamentares Seguidos";
+	private static final String PESQUISA = "Pesquisar Parlamentar";
+	private static final String RANKINGS = "Rankings entre parlamentares";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,9 +59,9 @@ public class GuiMain extends Activity implements
 			// then we don't need to do anything and should return or else
 			// we could end up with overlapping fragments.
 			if (savedInstanceState != null) {
-				return;
+				//faz nada
 			}
-
+			else{
 			// Create a new Fragment to be placed in the activity layout
 			ParlamentarSeguidoListFragment fragment = new ParlamentarSeguidoListFragment();
 
@@ -68,6 +73,7 @@ public class GuiMain extends Activity implements
 			// Add the fragment to the 'fragment_container' FrameLayout
 			getFragmentManager().beginTransaction()
 					.add(R.id.fragment_container, fragment).commit();
+			}
 		}
 
 		/*
@@ -113,7 +119,7 @@ public class GuiMain extends Activity implements
 		final Button btn_politico_main = (Button) findViewById(R.id.btn_politico_main);
 		final Button btn_pesquisar_parlamentar = (Button) findViewById(R.id.btn_pesquisar_parlamentar);
 		final Button btn_ranking_main = (Button) findViewById(R.id.btn_ranking);
-		final Button btn_mostra_outros = (Button) findViewById(R.id.btn_ic_rolagem1);
+		final Button btn_mostra_outros = (Button) findViewById(R.id.btn_ic_rolagem);
 		// agora vc deve implementar os metodos de captura de eventos
 
 		btn_sobre_main.setOnClickListener(new View.OnClickListener() {
@@ -150,6 +156,7 @@ public class GuiMain extends Activity implements
 
 				// Commit the transaction
 				transaction.commit();
+				Toast.makeText(getBaseContext(), SEGUIDOS, Toast.LENGTH_SHORT).show();
 
 			}
 		});
@@ -180,6 +187,7 @@ public class GuiMain extends Activity implements
 
 						// Commit the transaction
 						transaction.commit();
+						Toast.makeText(getBaseContext(), PESQUISA, Toast.LENGTH_SHORT).show();
 					}
 				});
 		btn_ranking_main.setOnClickListener(new View.OnClickListener() {
@@ -205,6 +213,7 @@ public class GuiMain extends Activity implements
 
 				// Commit the transaction
 				transaction.commit();
+				Toast.makeText(getBaseContext(), RANKINGS, Toast.LENGTH_SHORT).show();
 			}
 		});
 
@@ -217,15 +226,20 @@ public class GuiMain extends Activity implements
 					btn_politico_main.setVisibility(View.VISIBLE);
 					btn_ranking_main.setVisibility(View.VISIBLE);
 					btn_sobre_main.setVisibility(View.VISIBLE);
+					btn_mostra_outros.setScaleX(1.0f);
+					btn_mostra_outros.setScaleY(1.0f);
 				} else {
 					btn_pesquisar_parlamentar.setVisibility(View.GONE);
 					btn_politico_main.setVisibility(View.GONE);
 					btn_ranking_main.setVisibility(View.GONE);
 					btn_sobre_main.setVisibility(View.GONE);
+					btn_mostra_outros.setScaleX(0.6f);
+					btn_mostra_outros.setScaleY(0.6f);
+					
 				}
 			}
 		});
-
+	
 	}
 
 	@Override
@@ -237,6 +251,14 @@ public class GuiMain extends Activity implements
 	public void OnParlamentarSelected(String nome) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void repositioningBtn(View view, double amount){
+				int amountOffscreen = (int)(view.getWidth() * amount);
+				RelativeLayout.LayoutParams rlParams = 
+				    (RelativeLayout.LayoutParams)view.getLayoutParams();
+				rlParams.setMargins(0,0,-amountOffscreen,-amountOffscreen);
+				view.setLayoutParams(rlParams);
 	}
 
 }

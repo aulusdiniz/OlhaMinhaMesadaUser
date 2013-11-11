@@ -40,7 +40,7 @@ public class ParlamentarSeguidoListFragment extends ListFragment {
 				getActivity(), R.layout.fragment_parlamentar_seguido, list);
 
 		setListAdapter(adapter);
-		setRetainInstance(true);
+		setRetainInstance(false);
 
 	}
 

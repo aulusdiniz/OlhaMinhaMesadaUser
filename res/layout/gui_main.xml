@@ -4,54 +4,58 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@drawable/fundo" >
-    
-	<FrameLayout
-    android:id="@+id/fragment_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="6dp" 
-	android:layout_marginRight="6dp" />
 
+    <FrameLayout 
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:layout_marginLeft="6dp"
+    	android:layout_marginRight="6dp"
+    	android:orientation="horizontal"
+        
+        ></FrameLayout>
     <Button
-        android:id="@+id/btn_ic_rolagem1"
-        android:layout_width="125dp"
-        android:layout_height="124dp"
+        android:id="@+id/btn_ic_rolagem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="@drawable/ic_rolagem1" />
-
-    <Button
-        android:id="@+id/btn_pesquisar_parlamentar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_above="@+id/btn_ranking"
-        android:layout_toRightOf="@+id/btn_ranking"
-        android:background="@drawable/pesquisa" />
-
-    <Button
-        android:id="@+id/btn_ranking"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_above="@+id/btn_sobre_main"
-        android:layout_alignLeft="@+id/btn_sobre_main"
-        android:layout_marginBottom="12dp"
-        android:layout_marginLeft="18dp"
-        android:background="@drawable/ranking" />
+        android:layout_marginRight="-70dp"
+        android:layout_marginBottom="-70dp"
+        android:background="@drawable/btn_rolagem" />
 
     <Button
         android:id="@+id/btn_sobre_main"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/btn_ic_rolagem1"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@+id/btn_ic_rolagem"
         android:background="@drawable/sobre" />
 
     <Button
         android:id="@+id/btn_politico_main"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_above="@+id/btn_ic_rolagem1"
+        android:layout_above="@+id/btn_ic_rolagem"
+        android:layout_marginBottom="8dp"
         android:layout_alignParentRight="true"
         android:background="@drawable/politico" />
+
+    <Button
+        android:id="@+id/btn_ranking"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignTop="@+id/btn_ic_rolagem"
+        android:layout_toLeftOf="@+id/btn_ic_rolagem"
+        android:background="@drawable/ranking" />
+
+    <Button
+        android:id="@+id/btn_pesquisar_parlamentar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_above="@+id/btn_ic_rolagem"
+        android:layout_alignLeft="@+id/btn_ic_rolagem"
+        android:background="@drawable/pesquisa" />
 
 </RelativeLayout>

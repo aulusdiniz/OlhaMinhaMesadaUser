@@ -38,7 +38,7 @@ public class ParlamentarListFragment extends ListFragment {
 				R.layout.fragment_parlamentar, list);
 
 		setListAdapter(adapter);
-		setRetainInstance(true);
+		setRetainInstance(false);
 
 	}
 
