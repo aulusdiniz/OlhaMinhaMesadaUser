@@ -3,6 +3,7 @@ package com.OMM.application.user.view;
 import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -134,7 +135,7 @@ public class GuiMain extends Activity
 			@Override
 			public void onClick( View v )
 			{
-				HttpConnection.getResponseHandler();
+				threadCreate();
 			}
 		});
 
@@ -142,7 +143,8 @@ public class GuiMain extends Activity
 
 	private void threadCreate( )
 	{
-
+		final ResponseHandler<String> response = HttpConnection.getResponseHandler();
+		
 		new Thread()
 		{
 
@@ -153,7 +155,7 @@ public class GuiMain extends Activity
 					DefaultHttpClient client = new DefaultHttpClient();
 					HttpGet httpMethod = new HttpGet(
 							"http://192.168.0.100:8080/OlhaMinhaMesada/cota?id=54373");
-					client.execute(httpMethod, HttpConnection.getResponseHandler());
+					client.execute(httpMethod, response);
 
 				} catch (ClientProtocolException e)
 				{

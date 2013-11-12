@@ -21,67 +21,61 @@ import android.os.Message;
 import com.OMM.application.user.helper.JSONHelper;
 import com.OMM.application.user.model.CotaParlamentar;
 
-public abstract class HttpConnection {
-	
+public abstract class HttpConnection
+{
+
 	public final static ResponseHandler<String> responseHandler = new ResponseHandler<String>()
-			{
+	{
 
-				public String handleResponse( HttpResponse response )
-						throws IOException
-				{
-					StatusLine status = response.getStatusLine();
-
-					HttpEntity entity = response.getEntity();
-					String result = null;
-					// todo: refatorar, extrair método/objeto
-
-					BufferedReader br = new BufferedReader(new InputStreamReader(
-							entity.getContent()));
-					StringBuilder sb = new StringBuilder();
-					String line = null;
-
-					while ((line = br.readLine()) != null)
-					{
-						sb.append(line + "\n");
-					}
-
-					br.close();
-					result = sb.toString();
-
-					Message message = handler.obtainMessage();
-					Bundle bundle = new Bundle();
-					bundle.putString("RESPONSE", result);
-					message.setData(bundle);
-					handler.sendMessage(message);
-
-					return result;
-				}
-			};
-			
-	   public static ResponseHandler<String> getResponseHandler(){
-	   	
-	   	return responseHandler;
-	   	
-	   }
-
-		private static final Handler handler = new Handler()
+		public String handleResponse( HttpResponse response ) throws IOException
 		{
-	
-			@Override
-			public void handleMessage( final Message msg )
+			StatusLine status = response.getStatusLine();
+
+			HttpEntity entity = response.getEntity();
+			String result = null;
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					entity.getContent()));
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+
+			while ((line = br.readLine()) != null)
 			{
-				String bundleResult = msg.getData().getString("RESPONSE");
-	
-				List<CotaParlamentar> ceaps = JSONHelper
-						.listaCotaParlamentarFromJSON(bundleResult);
-	
-				String valor = "" + ceaps.get(0).getValorAgosto();
-	
-				// output.setText(valor);
+				sb.append(line + "\n");
 			}
-		};
+
+			br.close();
+			result = sb.toString();
+
+			Message message = handler.obtainMessage();
+			Bundle bundle = new Bundle();
+			bundle.putString("RESPONSE", result);
+			message.setData(bundle);
+			handler.sendMessage(message);
+
+			return result;
+		}
+	};
+
+	public static ResponseHandler<String> getResponseHandler( )
+	{
+		return responseHandler;
+	}
+
+	private static final Handler handler = new Handler()
+	{
+
+		@Override
+		public void handleMessage( final Message msg )
+		{
+			String bundleResult = msg.getData().getString("RESPONSE");
+
+			List<CotaParlamentar> ceaps = JSONHelper
+					.listaCotaParlamentarFromJSON(bundleResult);
+
+			String valor = "" + ceaps.get(0).getValorAgosto();
+
+			// output.setText(valor);
+		}
+	};
 }
-
-
-
-
