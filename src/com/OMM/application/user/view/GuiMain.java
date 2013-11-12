@@ -1,40 +1,31 @@
 package com.OMM.application.user.view;
 
-import java.sql.SQLClientInfoException;
-
-import com.OMM.application.user.R;
-import com.OMM.application.user.dao.ParlamentarUserDao;
-import com.OMM.application.user.pojo.ParlamentarPO;
-
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.OMM.application.user.R;
+
 public class GuiMain extends Activity implements
-		ParlamentarSeguidoListFragment.OnParlamentarSeguidoSelectedListener,  ParlamentarListFragment.OnParlamentarSelectedListener{
-	// private SearchView mSearchView;
-	// private TextView mStatusView;
+		ParlamentarSeguidoListFragment.OnParlamentarSeguidoSelectedListener,
+		ParlamentarListFragment.OnParlamentarSelectedListener {
 
 	private static final String SEGUIDOS = "Parlamentares Seguidos";
 	private static final String PESQUISA = "Pesquisar Parlamentar";
 	private static final String RANKINGS = "Rankings entre parlamentares";
-	
+
+	private static FragmentManager fragmentManager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gui_main);
+		fragmentManager = this.getFragmentManager();
 
 		/*
 		 * //inicializa o banco e cria se ele nao existir ParlamentarUserDao dao
@@ -48,31 +39,17 @@ public class GuiMain extends Activity implements
 		 * po.setCod_parlamentar("005"); po.setNome_parlamentar("Arruda");
 		 * dao.insert(po);
 		 */
-		// ParlamentarListFragment fragment = (ParlamentarListFragment)
-		// getFragmentManager()
-		// .findFragmentById(R.id.list_fragment);
-		// fragment.updateListContent();
 
 		if (findViewById(R.id.fragment_container) != null) {
 
-			// However, if we're being restored from a previous state,
-			// then we don't need to do anything and should return or else
-			// we could end up with overlapping fragments.
 			if (savedInstanceState != null) {
-				//faz nada
-			}
-			else{
-			// Create a new Fragment to be placed in the activity layout
-			ParlamentarSeguidoListFragment fragment = new ParlamentarSeguidoListFragment();
+				// faz nada
+			} else {
+				/* cria a primeira lista */
+				ParlamentarSeguidoListFragment fragment = new ParlamentarSeguidoListFragment();
+				fragmentManager.beginTransaction()
+						.add(R.id.fragment_container, fragment).commit();
 
-			// In case this activity was started with special instructions from
-			// an
-			// Intent, pass the Intent's extras to the fragment as arguments
-			// fragment.setArguments(getIntent().getExtras());
-
-			// Add the fragment to the 'fragment_container' FrameLayout
-			getFragmentManager().beginTransaction()
-					.add(R.id.fragment_container, fragment).commit();
 			}
 		}
 
@@ -137,27 +114,14 @@ public class GuiMain extends Activity implements
 
 			@Override
 			public void onClick(View v) {
-				// Create fragment and give it an argument specifying the
-				// article it should show
-				ParlamentarSeguidoListFragment newFragment = new ParlamentarSeguidoListFragment();
-				Bundle args = new Bundle();
-				// args.putInt(ParlamentarListFragment.ARG_POSITION, position);
-				// newFragment.setArguments(args);
-
-				FragmentTransaction transaction = getFragmentManager()
+				/* Substitui a lista */
+				ParlamentarSeguidoListFragment listFragment = new ParlamentarSeguidoListFragment();
+				FragmentTransaction transaction = fragmentManager
 						.beginTransaction();
-
-				// Replace whatever is in the fragment_container view with this
-				// fragment,
-				// and add the transaction to the back stack so the user can
-				// navigate back
-				transaction.replace(R.id.fragment_container, newFragment);
-				transaction.addToBackStack(null);
-
-				// Commit the transaction
+				transaction.replace(R.id.fragment_container, listFragment);
 				transaction.commit();
-				Toast.makeText(getBaseContext(), SEGUIDOS, Toast.LENGTH_SHORT).show();
-
+				Toast.makeText(getBaseContext(), SEGUIDOS, Toast.LENGTH_SHORT)
+						.show();
 			}
 		});
 
@@ -166,54 +130,29 @@ public class GuiMain extends Activity implements
 
 					@Override
 					public void onClick(View v) {
-						// Create fragment and give it an argument specifying
-						// the article it should show
-						ParlamentarListFragment newFragment = new ParlamentarListFragment();
-						Bundle args = new Bundle();
-						// args.putInt(ParlamentarListFragment.ARG_POSITION,
-						// position);
-						// newFragment.setArguments(args);
-
-						FragmentTransaction transaction = getFragmentManager()
+						/* Substitui a lista */
+						ParlamentarListFragment listFragment = new ParlamentarListFragment();
+						FragmentTransaction transaction = fragmentManager
 								.beginTransaction();
-
-						// Replace whatever is in the fragment_container view
-						// with this fragment,
-						// and add the transaction to the back stack so the user
-						// can navigate back
 						transaction.replace(R.id.fragment_container,
-								newFragment);
-						transaction.addToBackStack(null);
-
-						// Commit the transaction
+								listFragment);
 						transaction.commit();
-						Toast.makeText(getBaseContext(), PESQUISA, Toast.LENGTH_SHORT).show();
+						Toast.makeText(getBaseContext(), PESQUISA,
+								Toast.LENGTH_SHORT).show();
 					}
 				});
 		btn_ranking_main.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// Create fragment and give it an argument specifying the
-				// article it should show
 				ParlamentarSeguidoListFragment newFragment = new ParlamentarSeguidoListFragment();
-				Bundle args = new Bundle();
-				// args.putInt(ParlamentarListFragment.ARG_POSITION, position);
-				// newFragment.setArguments(args);
-
-				FragmentTransaction transaction = getFragmentManager()
+				FragmentTransaction transaction = fragmentManager
 						.beginTransaction();
-
-				// Replace whatever is in the fragment_container view with this
-				// fragment,
-				// and add the transaction to the back stack so the user can
-				// navigate back
 				transaction.replace(R.id.fragment_container, newFragment);
-				transaction.addToBackStack(null);
-
-				// Commit the transaction
 				transaction.commit();
-				Toast.makeText(getBaseContext(), RANKINGS, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getBaseContext(), RANKINGS, Toast.LENGTH_SHORT)
+						.show();
+
 			}
 		});
 
@@ -221,6 +160,7 @@ public class GuiMain extends Activity implements
 
 			@Override
 			public void onClick(View v) {
+				/*Modificando a visibilidade dos botoes*/
 				if (btn_pesquisar_parlamentar.getVisibility() == View.GONE) {
 					btn_pesquisar_parlamentar.setVisibility(View.VISIBLE);
 					btn_politico_main.setVisibility(View.VISIBLE);
@@ -235,30 +175,35 @@ public class GuiMain extends Activity implements
 					btn_sobre_main.setVisibility(View.GONE);
 					btn_mostra_outros.setScaleX(0.6f);
 					btn_mostra_outros.setScaleY(0.6f);
-					
+
 				}
 			}
 		});
-	
+
 	}
 
 	@Override
 	public void OnParlamentarSeguidoSelected(String nome) {
-		// TODO Auto-generated method stub
+		/* Substitui o detalhe */
+		GuiParlamentar detailFragment = new GuiParlamentar();
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.replace(R.id.detail_fragment_container, detailFragment);
+		transaction.addToBackStack(null);
+		transaction.commit();
+		getFragmentManager().executePendingTransactions();
+		detailFragment.setText(nome);
 	}
 
 	@Override
 	public void OnParlamentarSelected(String nome) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public void repositioningBtn(View view, double amount){
-				int amountOffscreen = (int)(view.getWidth() * amount);
-				RelativeLayout.LayoutParams rlParams = 
-				    (RelativeLayout.LayoutParams)view.getLayoutParams();
-				rlParams.setMargins(0,0,-amountOffscreen,-amountOffscreen);
-				view.setLayoutParams(rlParams);
+		/* Substitui o detalhe */
+		GuiParlamentar detailFragment = new GuiParlamentar();
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.replace(R.id.detail_fragment_container, detailFragment);
+		transaction.addToBackStack(null);
+		transaction.commit();
+		getFragmentManager().executePendingTransactions();
+		detailFragment.setText(nome);
 	}
 
 }
