@@ -1,11 +1,8 @@
 package com.OMM.application.user.controller;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.OMM.application.user.model.*;
-//import com.OMM.application.user.requests.HttpConnection;
+import com.OMM.application.user.helper.JSONHelper;
+import com.OMM.application.user.model.Parlamentar;
 
 
 public class ParlamentarUserController {
@@ -20,12 +17,12 @@ public class ParlamentarUserController {
 		
 	}
 	
-	/*public void buscaParlamentar(){		
-		HttpConnection hc = new HttpConnection();
-		hc.performRequest();
-		//String result = hc.performRequest();		
-		//return result;
-	}*/
+	public Parlamentar buscaParlamentar(String json){
+		
+		Parlamentar parlamentar = JSONHelper.listaParlamentarFromJSON(json).get(0);
+		
+		return parlamentar;		
+	}
 	
 	public static ParlamentarUserController getInstance(){
 		
