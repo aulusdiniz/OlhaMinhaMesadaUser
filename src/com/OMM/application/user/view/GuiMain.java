@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,15 +43,10 @@ public class GuiMain extends Activity implements
 
 		if (findViewById(R.id.fragment_container) != null) {
 
-			if (savedInstanceState != null) {
-				// faz nada
-			} else {
-				/* cria a primeira lista */
-				ParlamentarSeguidoListFragment fragment = new ParlamentarSeguidoListFragment();
-				fragmentManager.beginTransaction()
-						.add(R.id.fragment_container, fragment).commit();
-
-			}
+			/* cria a primeira lista */
+			ParlamentarSeguidoListFragment fragment = new ParlamentarSeguidoListFragment();
+			fragmentManager.beginTransaction()
+					.replace(R.id.fragment_container, fragment).commit();
 		}
 
 		/*
@@ -160,7 +156,7 @@ public class GuiMain extends Activity implements
 
 			@Override
 			public void onClick(View v) {
-				/*Modificando a visibilidade dos botoes*/
+				/* Modificando a visibilidade dos botoes */
 				if (btn_pesquisar_parlamentar.getVisibility() == View.GONE) {
 					btn_pesquisar_parlamentar.setVisibility(View.VISIBLE);
 					btn_politico_main.setVisibility(View.VISIBLE);
@@ -185,25 +181,52 @@ public class GuiMain extends Activity implements
 	@Override
 	public void OnParlamentarSeguidoSelected(String nome) {
 		/* Substitui o detalhe */
-		GuiParlamentar detailFragment = new GuiParlamentar();
-		FragmentTransaction transaction = fragmentManager.beginTransaction();
-		transaction.replace(R.id.detail_fragment_container, detailFragment);
-		transaction.addToBackStack(null);
-		transaction.commit();
-		getFragmentManager().executePendingTransactions();
-		detailFragment.setText(nome);
+		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+			ParlamentarDetailFragment detailFragment = new ParlamentarDetailFragment();
+			FragmentTransaction transaction = fragmentManager
+					.beginTransaction();
+			transaction.replace(R.id.fragment_container, detailFragment);
+			// transaction.addToBackStack(null);
+			transaction.commitAllowingStateLoss();
+			getFragmentManager().executePendingTransactions();
+			detailFragment.setText(nome);
+
+		} else {
+			ParlamentarDetailFragment detailFragment = new ParlamentarDetailFragment();
+			FragmentTransaction transaction = fragmentManager
+					.beginTransaction();
+			transaction.replace(R.id.detail_fragment_container, detailFragment);
+			transaction.addToBackStack(null);
+			transaction.commit();
+			getFragmentManager().executePendingTransactions();
+			detailFragment.setText(nome);
+		}
 	}
 
 	@Override
 	public void OnParlamentarSelected(String nome) {
 		/* Substitui o detalhe */
-		GuiParlamentar detailFragment = new GuiParlamentar();
-		FragmentTransaction transaction = fragmentManager.beginTransaction();
-		transaction.replace(R.id.detail_fragment_container, detailFragment);
-		transaction.addToBackStack(null);
-		transaction.commit();
-		getFragmentManager().executePendingTransactions();
-		detailFragment.setText(nome);
+		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+			ParlamentarDetailFragment detailFragment = new ParlamentarDetailFragment();
+			FragmentTransaction transaction = fragmentManager
+					.beginTransaction();
+			transaction.replace(R.id.fragment_container, detailFragment);
+			// transaction.addToBackStack(null);
+			transaction.commitAllowingStateLoss();
+			getFragmentManager().executePendingTransactions();
+			detailFragment.setText(nome);
+
+		} else {
+			ParlamentarDetailFragment detailFragment = new ParlamentarDetailFragment();
+			FragmentTransaction transaction = fragmentManager
+					.beginTransaction();
+			transaction.replace(R.id.detail_fragment_container, detailFragment);
+			transaction.addToBackStack(null);
+			transaction.commit();
+			getFragmentManager().executePendingTransactions();
+			detailFragment.setText(nome);
+		}
+
 	}
 
 }

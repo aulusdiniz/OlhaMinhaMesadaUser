@@ -121,7 +121,7 @@ public class ParlamentarSeguidoListFragment extends ListFragment {
 
 	public void updateDetail(ParlamentarPO parlamentar) {
 
-		listener.OnParlamentarSeguidoSelected(parlamentar.getNome_parlamentar());
+		listener.OnParlamentarSeguidoSelected(parlamentar.getNome_parlamentar().toString());
 	}
 
 }
