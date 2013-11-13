@@ -11,12 +11,15 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.OMM.application.user.R;
+import com.OMM.application.user.controller.ParlamentarUserController;
+import com.OMM.application.user.model.Parlamentar;
 import com.OMM.application.user.requests.HttpConnection;
 
 public class GuiMain extends Activity
@@ -156,6 +159,18 @@ public class GuiMain extends Activity
 					HttpGet httpMethod = new HttpGet(
 							"http://192.168.0.100:8080/OlhaMinhaMesada/cota?id=54373");
 					client.execute(httpMethod, response);
+					
+					ParlamentarUserController parlamentarController = ParlamentarUserController.getInstance();
+					
+					parlamentarController.buscaParlamentar(client.execute(httpMethod,response));
+					
+					Parlamentar p = parlamentarController.buscaParlamentar(client.execute(httpMethod,response));
+					
+					Message msg = new Message();
+					Bundle bundle = new Bundle();
+					bundle.putString("RESPONSE", p.toString());
+					msg.setData(bundle);
+					//handler.sendMessage(msg);
 
 				} catch (ClientProtocolException e)
 				{
