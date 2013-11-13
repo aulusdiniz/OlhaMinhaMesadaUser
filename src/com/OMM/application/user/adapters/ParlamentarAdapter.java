@@ -10,14 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.OMM.application.user.R;
-import com.OMM.application.user.pojo.ParlamentarPO;
+import com.OMM.application.user.model.Parlamentar;
 
-public class ParlamentarAdapter extends ArrayAdapter<ParlamentarPO> {
+public class ParlamentarAdapter extends ArrayAdapter<Parlamentar> {
 	private Context context;
-	private List<ParlamentarPO> parlamentares;
+	private List<Parlamentar> parlamentares;
 
 	public ParlamentarAdapter(Context context, int textViewResourceId,
-			List<ParlamentarPO> parlamentares) {
+			List<Parlamentar> parlamentares) {
 		super(context, textViewResourceId, parlamentares);
 
 		this.context = context;
@@ -32,7 +32,7 @@ public class ParlamentarAdapter extends ArrayAdapter<ParlamentarPO> {
 		
 		View view = inflater.inflate(R.layout.fragment_parlamentar, null);
 		TextView textView = (TextView) view.findViewById(R.id.parlamentarlistfragment_txt_nome);
-		textView.setText(parlamentares.get(position).getNome_parlamentar());
+		textView.setText(parlamentares.get(position).getNome());
 		return view;
 	}
 }

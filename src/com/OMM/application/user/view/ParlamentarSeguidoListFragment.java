@@ -1,6 +1,5 @@
 package com.OMM.application.user.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -14,10 +13,8 @@ import android.widget.Toast;
 
 import com.OMM.application.user.R;
 import com.OMM.application.user.adapters.ParlamentarSeguidoAdapter;
-import com.OMM.application.user.controller.ParlamentarUserController;
 import com.OMM.application.user.dao.ParlamentarUserDao;
 import com.OMM.application.user.model.Parlamentar;
-import com.OMM.application.user.pojo.ParlamentarPO;
 
 public class ParlamentarSeguidoListFragment extends ListFragment {
 
@@ -34,7 +31,7 @@ public class ParlamentarSeguidoListFragment extends ListFragment {
 
 		ParlamentarUserDao dao = new ParlamentarUserDao(getActivity());
 		// TODO construir chamada dao parlamentares seguidos
-		List<ParlamentarPO> list = dao.getAll();
+		List<Parlamentar> list = dao.getAll();
 
 		ParlamentarSeguidoAdapter adapter = new ParlamentarSeguidoAdapter(
 				getActivity(), R.layout.fragment_parlamentar_seguido, list);
@@ -46,7 +43,7 @@ public class ParlamentarSeguidoListFragment extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		ParlamentarPO parlamentar = (ParlamentarPO) getListAdapter().getItem(
+		Parlamentar parlamentar = (Parlamentar) getListAdapter().getItem(
 				position);
 		Toast.makeText(getActivity(), "toquei!", Toast.LENGTH_SHORT).show();
 		updateDetail(parlamentar);
@@ -100,7 +97,7 @@ public class ParlamentarSeguidoListFragment extends ListFragment {
 	 * activity fazer a chamada, logo... a Main faz.
 	 */
 	public interface OnParlamentarSeguidoSelectedListener {
-		public void OnParlamentarSeguidoSelected(String nome);
+		public void OnParlamentarSeguidoSelected(Parlamentar parlamentar);
 	}
 
 	/*
@@ -119,9 +116,9 @@ public class ParlamentarSeguidoListFragment extends ListFragment {
 		}
 	}
 
-	public void updateDetail(ParlamentarPO parlamentar) {
+	public void updateDetail(Parlamentar parlamentar) {
 
-		listener.OnParlamentarSeguidoSelected(parlamentar.getNome_parlamentar().toString());
+		listener.OnParlamentarSeguidoSelected(parlamentar);
 	}
 
 }

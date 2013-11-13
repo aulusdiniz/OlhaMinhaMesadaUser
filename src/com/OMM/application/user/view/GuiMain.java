@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.OMM.application.user.R;
+import com.OMM.application.user.model.Parlamentar;
 
 public class GuiMain extends Activity implements
 		ParlamentarSeguidoListFragment.OnParlamentarSeguidoSelectedListener,
@@ -179,7 +180,7 @@ public class GuiMain extends Activity implements
 	}
 
 	@Override
-	public void OnParlamentarSeguidoSelected(String nome) {
+	public void OnParlamentarSeguidoSelected(Parlamentar parlamentar) {
 		/* Substitui o detalhe */
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 			ParlamentarDetailFragment detailFragment = new ParlamentarDetailFragment();
@@ -189,7 +190,7 @@ public class GuiMain extends Activity implements
 			// transaction.addToBackStack(null);
 			transaction.commitAllowingStateLoss();
 			getFragmentManager().executePendingTransactions();
-			detailFragment.setText(nome);
+			detailFragment.setText(parlamentar.getNome());
 
 		} else {
 			ParlamentarDetailFragment detailFragment = new ParlamentarDetailFragment();
@@ -199,12 +200,12 @@ public class GuiMain extends Activity implements
 			transaction.addToBackStack(null);
 			transaction.commit();
 			getFragmentManager().executePendingTransactions();
-			detailFragment.setText(nome);
+			detailFragment.setText(parlamentar.getNome());
 		}
 	}
 
 	@Override
-	public void OnParlamentarSelected(String nome) {
+	public void OnParlamentarSelected(Parlamentar parlamentar) {
 		/* Substitui o detalhe */
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 			ParlamentarDetailFragment detailFragment = new ParlamentarDetailFragment();
@@ -214,7 +215,7 @@ public class GuiMain extends Activity implements
 			// transaction.addToBackStack(null);
 			transaction.commitAllowingStateLoss();
 			getFragmentManager().executePendingTransactions();
-			detailFragment.setText(nome);
+			detailFragment.setText(parlamentar.getNome());
 
 		} else {
 			ParlamentarDetailFragment detailFragment = new ParlamentarDetailFragment();
@@ -224,7 +225,7 @@ public class GuiMain extends Activity implements
 			transaction.addToBackStack(null);
 			transaction.commit();
 			getFragmentManager().executePendingTransactions();
-			detailFragment.setText(nome);
+			detailFragment.setText(parlamentar.getNome());
 		}
 
 	}

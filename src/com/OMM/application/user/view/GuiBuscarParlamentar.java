@@ -2,13 +2,6 @@ package com.OMM.application.user.view;
 
 
 
-import com.OMM.application.user.adapters.ParlamentarAdapter;
-import com.OMM.application.user.dao.ParlamentarUserDao;
-import com.OMM.application.user.pojo.ParlamentarPO;
-
-
-import android.R;
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +9,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
+
+import com.OMM.application.user.dao.ParlamentarUserDao;
+import com.OMM.application.user.model.Parlamentar;
 
 
 public class GuiBuscarParlamentar extends ListActivity  {
@@ -47,8 +39,8 @@ public class GuiBuscarParlamentar extends ListActivity  {
 		 * Dessa forma voce consegue fazer passagens de paramentros dentro da aplicacao
 		 * 
 		 */
-		ParlamentarPO po= (ParlamentarPO)l.getAdapter().getItem(position);// aqui eu digo em que item usuario clicou
-		Toast.makeText(getBaseContext(),"Cod do parlamentar:"+po.getCod_parlamentar().toString(), Toast.LENGTH_SHORT).show();
+		Parlamentar po= (Parlamentar)l.getAdapter().getItem(position);// aqui eu digo em que item usuario clicou
+		Toast.makeText(getBaseContext(),"Cod do parlamentar:"+po.getId(), Toast.LENGTH_SHORT).show();
 		
 		
 		

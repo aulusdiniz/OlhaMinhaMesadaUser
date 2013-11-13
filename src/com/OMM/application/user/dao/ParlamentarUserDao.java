@@ -3,15 +3,14 @@ package com.OMM.application.user.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.OMM.application.user.helper.DB;
-import com.OMM.application.user.pojo.ParlamentarPO;
-
-
-
+import android.R.integer;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.OMM.application.user.helper.DB;
+import com.OMM.application.user.model.Parlamentar;
 
 public class ParlamentarUserDao {
 	
@@ -20,30 +19,31 @@ public class ParlamentarUserDao {
 	private static String[] colunas={"ID_PARLAMENTAR,NOME_PARLAMENTAR"};
 	
 	
-	public boolean insert(ParlamentarPO po)
+	public boolean insert(Parlamentar po)
 {
 	SQLiteDatabase db=new DB(context).getWritableDatabase();
 	ContentValues ctv = new ContentValues();
 	
-	ctv.put("ID_PARLAMENTAR", po.getCod_parlamentar().toString());
-	ctv.put("NOME_PARLAMENTAR", po.getNome_parlamentar().toString());
+	ctv.put("ID_PARLAMENTAR", po.getId());
+	ctv.put("NOME_PARLAMENTAR", po.getNome());
 		
+	
 	return (db.insert(nome_tabela,null, ctv)>0);
 }
 	
-	public boolean delete(ParlamentarPO po){
+	public boolean delete(Parlamentar po){
 	SQLiteDatabase db=new DB(context).getWritableDatabase();
-	return(db.delete(nome_tabela,"ID_PARLAMENTAR=?",new String[]{po.getCod_parlamentar().toString()})>0);
+	return(db.delete(nome_tabela,"ID_PARLAMENTAR=?",new String[]{po.getId()+""})>0);
 	}
 	
-	public boolean update(ParlamentarPO po){
+	public boolean update(Parlamentar po){
 	SQLiteDatabase db= new DB(context).getWritableDatabase();
 	ContentValues ctv = new ContentValues();
 	
-	ctv.put("ID_PARLAMENTAR", po.getCod_parlamentar());
-	ctv.put("NOME_PARLAMENTAR", po.getNome_parlamentar());
+	ctv.put("ID_PARLAMENTAR", po.getId());
+	ctv.put("NOME_PARLAMENTAR", po.getNome());
 	
-	return(	db.update(nome_tabela, ctv, "ID_PARLAMENTAR=?", new String[]{po.getCod_parlamentar().toString()})>0);
+	return(	db.update(nome_tabela, ctv, "ID_PARLAMENTAR=?", new String[]{po.getId()+""})>0);
 
 	}
 	
@@ -54,31 +54,34 @@ public class ParlamentarUserDao {
 		this.context=context;
 	}
 	
-	public ParlamentarPO getById(Integer ID_PARLAMENTAR)
+	public Parlamentar getById(Integer ID_PARLAMENTAR)
 	{
 		SQLiteDatabase db= new DB(context).getReadableDatabase();
 		
 		Cursor rs= db.query(nome_tabela, colunas, "ID_PARLAMENTAR=?",new String[]{ID_PARLAMENTAR.toString()},null,null,null);
 		
-		ParlamentarPO po=null;
+		Parlamentar po=null;
 		if(rs.moveToFirst())
 		{
-			po= new ParlamentarPO();
-			po.setCod_parlamentar(rs.getString(rs.getColumnIndex("ID_CLIENTE")));
-			po.setNome_parlamentar(rs.getString(rs.getColumnIndex("NOME_PARLAMENTAR")));
+			po= new Parlamentar();
+			po.setId(Integer.parseInt(rs.getString(rs.getColumnIndex("ID_CLIENTE"))));
+			po.setNome(rs.getString(rs.getColumnIndex("NOME_PARLAMENTAR")));
 		
 			
 		}
 		return po;
 	}
-	public List<ParlamentarPO> getAll()
+	public List<Parlamentar> getAll()
 	{
 		SQLiteDatabase db= new DB(context).getReadableDatabase();
 		Cursor rs = db.rawQuery("SELECT ID_PARLAMENTAR,NOME_PARLAMENTAR FROM PARLAMENTAR", null);
-		List <ParlamentarPO> lista= new ArrayList<ParlamentarPO>();
+		List <Parlamentar> lista= new ArrayList<Parlamentar>();
 		while(rs.moveToNext())
 		{
-			ParlamentarPO po = new ParlamentarPO(rs.getString(0),rs.getString(1));
+			Parlamentar po = new Parlamentar();
+			po.setId(rs.getInt(0));
+			po.setNome(rs.getString(1));
+			
 			lista.add(po);
 			
 		}
@@ -89,15 +92,18 @@ public class ParlamentarUserDao {
 	 * ele deve ser trabalhado melhor para condição de nao encontrar
 	 * um parlamentar
 	 */
-	public List<ParlamentarPO> getSelected(String nomeParlamentar)
+	public List<Parlamentar> getSelected(String nomeParlamentar)
 	{
 		
 		SQLiteDatabase db= new DB(context).getReadableDatabase();
 		Cursor rs = db.rawQuery("SELECT ID_PARLAMENTAR,NOME_PARLAMENTAR FROM PARLAMENTAR WHERE NOME_PARLAMENTAR LIKE '%"+nomeParlamentar+"%'", null);
-		List <ParlamentarPO> lista= new ArrayList<ParlamentarPO>();
+		List <Parlamentar> lista= new ArrayList<Parlamentar>();
 		while(rs.moveToNext())
 		{
-			ParlamentarPO po = new ParlamentarPO(rs.getString(0),rs.getString(1));
+			Parlamentar po = new Parlamentar();
+			po.setId(rs.getInt(0));
+			po.setNome(rs.getString(1));
+			
 			lista.add(po);
 			
 		}

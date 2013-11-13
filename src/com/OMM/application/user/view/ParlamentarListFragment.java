@@ -15,7 +15,6 @@ import com.OMM.application.user.R;
 import com.OMM.application.user.adapters.ParlamentarAdapter;
 import com.OMM.application.user.dao.ParlamentarUserDao;
 import com.OMM.application.user.model.Parlamentar;
-import com.OMM.application.user.pojo.ParlamentarPO;
 
 public class ParlamentarListFragment extends ListFragment {
 
@@ -32,7 +31,7 @@ public class ParlamentarListFragment extends ListFragment {
 
 		ParlamentarUserDao dao = new ParlamentarUserDao(getActivity());
 		// TODO construir chamada dao parlamentares pelo httprequest
-		List<ParlamentarPO> list = dao.getAll();
+		List<Parlamentar> list = dao.getAll();
 
 		ParlamentarAdapter adapter = new ParlamentarAdapter(getActivity(),
 				R.layout.fragment_parlamentar, list);
@@ -44,7 +43,7 @@ public class ParlamentarListFragment extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		ParlamentarPO parlamentar = (ParlamentarPO) getListAdapter().getItem(
+		Parlamentar parlamentar = (Parlamentar) getListAdapter().getItem(
 				position);
 		Toast.makeText(getActivity(), "toquei!", Toast.LENGTH_SHORT).show();
 		updateDetail(parlamentar);
@@ -98,7 +97,7 @@ public class ParlamentarListFragment extends ListFragment {
 	 * activity fazer a chamada, logo... a Main faz.
 	 */
 	public interface OnParlamentarSelectedListener {
-		public void OnParlamentarSelected(String nome);
+		public void OnParlamentarSelected(Parlamentar parlamentar);
 	}
 
 	/*
@@ -117,9 +116,9 @@ public class ParlamentarListFragment extends ListFragment {
 		}
 	}
 
-	public void updateDetail(ParlamentarPO parlamentar) {
+	public void updateDetail(Parlamentar parlamentar) {
 
-		listener.OnParlamentarSelected(parlamentar.getNome_parlamentar());
+		listener.OnParlamentarSelected(parlamentar);
 	}
 
 }

@@ -19,8 +19,10 @@ public class ParlamentarDetailFragment extends Fragment {
 		return view;
 	}
 
+
 	public void setText(String nome) {
 		TextView view = (TextView) getView().findViewById(R.id.detailsText);
 		view.setText(nome);
 	}
+	
 }
