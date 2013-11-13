@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
@@ -170,7 +171,7 @@ public class GuiMain extends Activity
 					Bundle bundle = new Bundle();
 					bundle.putString("RESPONSE", p.toString());
 					msg.setData(bundle);
-					//handler.sendMessage(msg);
+					handler.sendMessage(msg);
 
 				} catch (ClientProtocolException e)
 				{
@@ -182,6 +183,12 @@ public class GuiMain extends Activity
 			}
 		}.start();
 	}
-}
-
 	
+	private final Handler handler = new Handler() {
+
+		public void handleMessage( final Message msg )
+		{
+			output.setText(msg.getData().get("RESPONSE").toString());
+		}
+	};
+}
