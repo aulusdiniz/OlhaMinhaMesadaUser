@@ -10,9 +10,11 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -100,9 +102,7 @@ public class GuiMain extends Activity
 			public void onClick( View v )
 			{
 				// esse comando chama outra activity
-				startActivity(new Intent(getBaseContext(), GuiSobre.class));// corrigir
-																								// a
-																								// classe
+				startActivity(new Intent(getBaseContext(), GuiSobre.class)); // corrigir a classe
 
 			}
 		});
@@ -139,56 +139,56 @@ public class GuiMain extends Activity
 			@Override
 			public void onClick( View v )
 			{
-				threadCreate();
+				final ResponseHandler<String> response = HttpConnection.getResponseHandler();
+				
+				BuscaTask task = new BuscaTask();
+				
+				task.execute(response);
 			}
 		});
 
-	}
-
-	private void threadCreate( )
-	{
-		final ResponseHandler<String> response = HttpConnection.getResponseHandler();
-		
-		new Thread()
-		{
-
-			public void run( )
-			{
-				try
-				{
-					DefaultHttpClient client = new DefaultHttpClient();
-					HttpGet httpMethod = new HttpGet(
-							"http://192.168.0.100:8080/OlhaMinhaMesada/cota?id=54373");
-					client.execute(httpMethod, response);
-					
-					ParlamentarUserController parlamentarController = ParlamentarUserController.getInstance();
-					
-					parlamentarController.buscaParlamentar(client.execute(httpMethod,response));
-					
-					Parlamentar p = parlamentarController.buscaParlamentar(client.execute(httpMethod,response));
-					
-					Message msg = new Message();
-					Bundle bundle = new Bundle();
-					bundle.putString("RESPONSE", p.toString());
-					msg.setData(bundle);
-					handler.sendMessage(msg);
-
-				} catch (ClientProtocolException e)
-				{
-					// do sth
-				} catch (IOException e)
-				{
-					// do sth else
-				}
-			}
-		}.start();
-	}
+	}	
 	
-	private final Handler handler = new Handler() {
-
-		public void handleMessage( final Message msg )
-		{
-			output.setText(msg.getData().get("RESPONSE").toString());
+	private class BuscaTask extends AsyncTask<ResponseHandler<String>, Void, String>{
+		
+		protected void onPreExecute(){
+		     progressDialog = ProgressDialog.show(GuiMain.this, "Aguarde...", "Buscando Dados");
 		}
-	};
+		
+		@Override
+		protected String doInBackground(ResponseHandler<String>... params){
+			
+			try
+			{
+				DefaultHttpClient client = new DefaultHttpClient();
+				HttpGet httpMethod = new HttpGet(
+						"http://192.168.1.3:8080/OlhaMinhaMesada/cota?id=54373");
+				
+				ParlamentarUserController parlamentarController = ParlamentarUserController.getInstance();
+				
+				Parlamentar p = parlamentarController.buscaParlamentar(client.execute(httpMethod, params[0]));
+				
+				String objeto = p.toString();
+				
+				return objeto;
+
+			} catch (ClientProtocolException e)
+			{
+				// do sth
+				
+			} catch (IOException e)
+			{
+				// do sth else
+			}
+			
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(final String result) {
+			
+			progressDialog.dismiss();
+			output.setText(result);	
+		}
+	}
 }
