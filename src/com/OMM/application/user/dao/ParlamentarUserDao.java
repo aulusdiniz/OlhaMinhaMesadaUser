@@ -40,14 +40,11 @@ public class ParlamentarUserDao {
 	SQLiteDatabase db= new DB(context).getWritableDatabase();
 	ContentValues ctv = new ContentValues();
 	
-	ctv.put("ID_PARLAMENTAR", po.getId());
-	ctv.put("NOME_PARLAMENTAR", po.getNome());
+	ctv.put("SEGUIDO", po.isSeguido());
 	
 	return(	db.update(nome_tabela, ctv, "ID_PARLAMENTAR=?", new String[]{po.getId()+""})>0);
 
 	}
-	
-	
 	
 	public ParlamentarUserDao(Context context)
 	{

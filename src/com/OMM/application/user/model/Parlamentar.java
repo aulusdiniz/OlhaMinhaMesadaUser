@@ -1,6 +1,5 @@
 package com.OMM.application.user.model;
 
-
 public class Parlamentar {
 
 	int id;
@@ -11,9 +10,30 @@ public class Parlamentar {
 
 	String uf;
 
+	boolean seguido;
+
 	byte[] foto;
 
 	public Parlamentar() {
+	}
+
+	public Parlamentar(int id, String nome, String partido, String uf,
+			boolean seguido, byte[] foto) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.partido = partido;
+		this.uf = uf;
+		this.seguido = seguido;
+		this.foto = foto;
+	}
+
+	public boolean isSeguido() {
+		return seguido;
+	}
+
+	public void setSeguido(boolean seguido) {
+		this.seguido = seguido;
 	}
 
 	public int getId() {

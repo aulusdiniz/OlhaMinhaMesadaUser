@@ -41,12 +41,47 @@ public class CotaParlamentar {
 	public CotaParlamentar() {
 	}
 
+	public CotaParlamentar(int id, int idParlamentar, int ano,
+			int numeroSubCota, double valorJaneiro, double valorFevereiro,
+			double valorMarco, double valorAbril, double valorMaio,
+			double valorJunho, double valorJulho, double valorAgosto,
+			double valorSetembro, double valorOutubro, double valorNovembro,
+			double valorDezembro, String descricao, String especificacao) {
+		super();
+		this.id = id;
+		this.idParlamentar = idParlamentar;
+		this.ano = ano;
+		this.numeroSubCota = numeroSubCota;
+		this.valorJaneiro = valorJaneiro;
+		this.valorFevereiro = valorFevereiro;
+		this.valorMarco = valorMarco;
+		this.valorAbril = valorAbril;
+		this.valorMaio = valorMaio;
+		this.valorJunho = valorJunho;
+		this.valorJulho = valorJulho;
+		this.valorAgosto = valorAgosto;
+		this.valorSetembro = valorSetembro;
+		this.valorOutubro = valorOutubro;
+		this.valorNovembro = valorNovembro;
+		this.valorDezembro = valorDezembro;
+		this.descricao = descricao;
+		this.especificacao = especificacao;
+	}
+
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getIdParlamentar() {
+		return idParlamentar;
+	}
+
+	public void setIdParlamentar(int idParlamentar) {
+		this.idParlamentar = idParlamentar;
 	}
 
 	public int getAno() {
@@ -176,5 +211,6 @@ public class CotaParlamentar {
 	public void setEspecificacao(String especificacao) {
 		this.especificacao = especificacao;
 	}
+
 
 }
