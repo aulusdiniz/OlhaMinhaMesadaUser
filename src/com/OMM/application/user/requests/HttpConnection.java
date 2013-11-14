@@ -109,7 +109,7 @@ public abstract class HttpConnection
 		{	
 			DefaultHttpClient client = new DefaultHttpClient();
 			HttpGet httpMethod = new HttpGet(
-			"http://192.168.1.3:8080/OlhaMinhaMesada/parlamentar?id="+idParlamentar);
+			"http://192.168.1.3:8080/OlhaMinhaMesada/cota?id="+idParlamentar);
 
 		
 			String result = client.execute(httpMethod, response);
