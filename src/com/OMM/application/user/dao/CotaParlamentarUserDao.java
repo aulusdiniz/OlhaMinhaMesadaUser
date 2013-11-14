@@ -15,7 +15,7 @@ public class CotaParlamentarUserDao {
 
 	private static String nome_tabela = "COTA";
 	private static Context context;
-	private static String[] colunas = { "ID_COTA,ID_PARLAMENTAR,DESCRICAO,MES,ANO,VALOR" };
+	private static String[] colunas = { "ID_COTA,ID_PARLAMENTAR, NUM_SUBCOTA ,DESCRICAO,MES,ANO,VALOR" };
 	private static Parlamentar parlamentar;
 
 	public boolean insertSeguido(Parlamentar po, CotaParlamentar cota) {
@@ -29,6 +29,7 @@ public class CotaParlamentarUserDao {
 		ctv.put("MES", 10);
 		ctv.put("ANO", cota.getAno());
 		ctv.put("VALOR", cota.getValorOutubro());
+		ctv.put("NUM_SUBCOTA", cota.getNumeroSubCota());
 
 		return (db.insert(nome_tabela, null, ctv) > 0);
 	}
@@ -46,11 +47,11 @@ public class CotaParlamentarUserDao {
 			lista.add(po);
 		}
 		return lista;
-
 	}
-	
-	public boolean delete(Parlamentar po){
-		SQLiteDatabase db=new DB(context).getWritableDatabase();
-		return(db.delete(nome_tabela,"ID_PARLAMENTAR=?",new String[]{po.getId()+""})>0);
-		}
+
+	public boolean delete(Parlamentar parlamentar) {
+		SQLiteDatabase db = new DB(context).getWritableDatabase();
+		return (db.delete(nome_tabela, "ID_PARLAMENTAR=?",
+				new String[] { parlamentar.getId() + "" }) > 0);
+	}
 }
