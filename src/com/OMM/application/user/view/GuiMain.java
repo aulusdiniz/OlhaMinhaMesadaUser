@@ -25,8 +25,7 @@ import com.OMM.application.user.controller.ParlamentarUserController;
 import com.OMM.application.user.model.Parlamentar;
 import com.OMM.application.user.requests.HttpConnection;
 
-public class GuiMain extends Activity
-{
+public class GuiMain extends Activity {
 
 	private ProgressDialog progressDialog;
 
@@ -37,20 +36,19 @@ public class GuiMain extends Activity
 	Button btn_teste;
 
 	@Override
-	protected void onCreate( Bundle savedInstanceState )
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gui_main);
 
-		this.btn_sobre_main = ( Button ) findViewById(R.id.btn_sobre_main);
-		this.btn_politico_main = ( Button ) findViewById(R.id.btn_politico_main);
-		this.btn_pesquisar_parlamentar = ( Button ) findViewById(R.id.btn_pesquisar_parlamentar);
-		this.btn_teste = ( Button ) findViewById(R.id.button1);
-		this.output = ( TextView ) findViewById(R.id.output);
+		this.btn_sobre_main = (Button) findViewById(R.id.btn_sobre_main);
+		this.btn_politico_main = (Button) findViewById(R.id.btn_politico_main);
+		this.btn_pesquisar_parlamentar = (Button) findViewById(R.id.btn_pesquisar_parlamentar);
+		this.btn_teste = (Button) findViewById(R.id.button1);
+		this.output = (TextView) findViewById(R.id.output);
 
 		/*
-		 * //inicializa o banco e cria se ele nao existir ParlamentarUserDao dao =
-		 * new ParlamentarUserDao(getBaseContext()); ParlamentarPO po=new
+		 * //inicializa o banco e cria se ele nao existir ParlamentarUserDao dao
+		 * = new ParlamentarUserDao(getBaseContext()); ParlamentarPO po=new
 		 * ParlamentarPO("001","Ramon Cruz da silva"); dao.insert(po);
 		 */
 
@@ -61,21 +59,22 @@ public class GuiMain extends Activity
 		 * SQLiteDatabase db=
 		 * openOrCreateDatabase("devmedia.db",Context.MODE_PRIVATE,null);
 		 * 
-		 * /*esse banco criado fica na pasta databese da aplica��o e pode ser
-		 * acessado usando o android Explorer do eclipse note que a cria��o do
-		 * banco esta sendo manual. Detalhe: Se voce nao colocar o comando IF NOT
-		 * EXISTS no inicio do comando CREATE TABLE o aplicativo executara apenas
-		 * uma vez e dar� um erro na segunda execucao, isso acontence porque jah
-		 * existe um banco de dados com a tabela no aparelho celular e nao eh
-		 * necessario criar a tabela novamente, o problema deste medoto eh o
-		 * acoplamento, desta forma vc acopla a interface direto com o banco de
-		 * dados e isso n�o eh uma boa coisa , a manutencao fica muito
-		 * complicado, entao vamos usar os padroes de projeto ..nesse caso
-		 * usaremos o padrao DAO. comece criando uma classe para tratar do bando
-		 * que extende da classe SQLiteOpenHelper
+		 * /*esse banco criado fica na pasta databese da aplica��o e pode
+		 * ser acessado usando o android Explorer do eclipse note que a
+		 * cria��o do banco esta sendo manual. Detalhe: Se voce nao colocar
+		 * o comando IF NOT EXISTS no inicio do comando CREATE TABLE o
+		 * aplicativo executara apenas uma vez e dar� um erro na segunda
+		 * execucao, isso acontence porque jah existe um banco de dados com a
+		 * tabela no aparelho celular e nao eh necessario criar a tabela
+		 * novamente, o problema deste medoto eh o acoplamento, desta forma vc
+		 * acopla a interface direto com o banco de dados e isso n�o eh uma
+		 * boa coisa , a manutencao fica muito complicado, entao vamos usar os
+		 * padroes de projeto ..nesse caso usaremos o padrao DAO. comece criando
+		 * uma classe para tratar do bando que extende da classe
+		 * SQLiteOpenHelper
 		 * 
-		 * esse parte do c�digo foi substituida pela classe DB, ela que ficarah
-		 * responsavel pelo banco de dados
+		 * esse parte do c�digo foi substituida pela classe DB, ela que
+		 * ficarah responsavel pelo banco de dados
 		 * 
 		 * 
 		 * 
@@ -95,24 +94,22 @@ public class GuiMain extends Activity
 
 		// agora vc deve implementar os metodos de captura de eventos
 
-		btn_sobre_main.setOnClickListener(new View.OnClickListener()
-		{
+		btn_sobre_main.setOnClickListener(new View.OnClickListener() {
 
 			@Override
-			public void onClick( View v )
-			{
+			public void onClick(View v) {
 				// esse comando chama outra activity
-				startActivity(new Intent(getBaseContext(), GuiSobre.class)); // corrigir a classe
+				startActivity(new Intent(getBaseContext(), GuiSobre.class)); // corrigir
+																				// a
+																				// classe
 
 			}
 		});
 
-		btn_politico_main.setOnClickListener(new View.OnClickListener()
-		{
+		btn_politico_main.setOnClickListener(new View.OnClickListener() {
 
 			@Override
-			public void onClick( View v )
-			{
+			public void onClick(View v) {
 
 				Toast.makeText(getBaseContext(), "Nao implementado",
 						Toast.LENGTH_SHORT).show();
@@ -120,75 +117,64 @@ public class GuiMain extends Activity
 			}
 		});
 
-		btn_pesquisar_parlamentar.setOnClickListener(new View.OnClickListener()
-		{
+		btn_pesquisar_parlamentar
+				.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						// esse comando chama outra activity
+						startActivity(new Intent(getBaseContext(),
+								GuiBuscarParlamentar.class));
+
+					}
+				});
+
+		btn_teste.setOnClickListener(new View.OnClickListener() {
 
 			@Override
-			public void onClick( View v )
-			{
-				// esse comando chama outra activity
-				startActivity(new Intent(getBaseContext(),
-						GuiBuscarParlamentar.class));
-
-			}
-		});
-
-		btn_teste.setOnClickListener(new View.OnClickListener()
-		{
-
-			@Override
-			public void onClick( View v )
-			{
-				final ResponseHandler<String> response = HttpConnection.getResponseHandler();
+			public void onClick(View v) {
 				
+				ResponseHandler<String> response = HttpConnection.getResponseHandler();
+
 				BuscaTask task = new BuscaTask();
-				
+
 				task.execute(response);
 			}
 		});
 
-	}	
-	
-	private class BuscaTask extends AsyncTask<ResponseHandler<String>, Void, String>{
-		
-		protected void onPreExecute(){
-		     progressDialog = ProgressDialog.show(GuiMain.this, "Aguarde...", "Buscando Dados");
-		}
-		
-		@Override
-		protected String doInBackground(ResponseHandler<String>... params){
-			
-			try
-			{
-				DefaultHttpClient client = new DefaultHttpClient();
-				HttpGet httpMethod = new HttpGet(
-						"http://192.168.1.3:8080/OlhaMinhaMesada/cota?id=54373");
-				
-				ParlamentarUserController parlamentarController = ParlamentarUserController.getInstance();
-				
-				Parlamentar p = parlamentarController.buscaParlamentar(client.execute(httpMethod, params[0]));
-				
-				String objeto = p.toString();
-				
-				return objeto;
+	}
 
-			} catch (ClientProtocolException e)
-			{
-				// do sth
-				
-			} catch (IOException e)
-			{
-				// do sth else
-			}
-			
-			return null;
+	private class BuscaTask extends AsyncTask<ResponseHandler<String>, Void, String> {
+
+		protected void onPreExecute() {
+			progressDialog = ProgressDialog.show(GuiMain.this, "Aguarde...",
+					"Buscando Dados");
 		}
-		
+
+		@Override
+		protected String doInBackground(ResponseHandler<String>... params) {
+
+			ParlamentarUserController parlamentarController = ParlamentarUserController
+					.getInstance();
+
+			
+			
+			
+
+			Parlamentar p =  parlamentarController.fazerRequisicao( params[0], 54373 );
+
+			Log.i("LOGS", "Parlamentar:" + p.getNome());
+
+			String objeto = p.toString();
+
+			return objeto;
+		}
+
 		@Override
 		protected void onPostExecute(final String result) {
-			
+
 			progressDialog.dismiss();
-			output.setText(result);	
+			output.setText(result);
 		}
 	}
 }

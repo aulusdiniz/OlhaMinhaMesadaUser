@@ -78,4 +78,53 @@ public abstract class HttpConnection
 			// output.setText(valor);
 		}
 	};
+	public static String requisicao( ResponseHandler<String> response, int idParlamentar ){
+		
+		try
+		{	
+			DefaultHttpClient client = new DefaultHttpClient();
+			HttpGet httpMethod = new HttpGet(
+			"http://192.168.1.3:8080/OlhaMinhaMesada/parlamentar?id="+idParlamentar);
+
+		
+			String result = client.execute(httpMethod, response);
+		
+			return result;
+		
+		} catch (ClientProtocolException e)
+		{
+			// do sth
+			
+		} catch (IOException e)
+		{
+			// do sth else
+		}
+		
+		return null;
+	}
+	
+	public static String requisicaoCota( ResponseHandler<String> response, int idParlamentar ){
+		
+		try
+		{	
+			DefaultHttpClient client = new DefaultHttpClient();
+			HttpGet httpMethod = new HttpGet(
+			"http://192.168.1.3:8080/OlhaMinhaMesada/parlamentar?id="+idParlamentar);
+
+		
+			String result = client.execute(httpMethod, response);
+		
+			return result;
+		
+		} catch (ClientProtocolException e)
+		{
+			// do sth
+			
+		} catch (IOException e)
+		{
+			// do sth else
+		}
+		
+		return null;
+	}
 }
