@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.OMM.application.user.R;
+import com.OMM.application.user.dao.ParlamentarUserDao;
 import com.OMM.application.user.model.Parlamentar;
 
 public class GuiMain extends Activity implements
@@ -29,18 +30,21 @@ public class GuiMain extends Activity implements
 		setContentView(R.layout.gui_main);
 		fragmentManager = this.getFragmentManager();
 
-		/*
-		 * //inicializa o banco e cria se ele nao existir ParlamentarUserDao dao
-		 * = new ParlamentarUserDao(getBaseContext()); ParlamentarPO po=new
-		 * ParlamentarPO("001","Ramon Cruz da silva");
-		 * po.setCod_parlamentar("002"); po.setNome_parlamentar("Tiririca");
-		 * dao.insert(po); po.setCod_parlamentar("003");
-		 * po.setNome_parlamentar("Romario brilha muito no curintias");
-		 * dao.insert(po); po.setCod_parlamentar("004");
-		 * po.setNome_parlamentar("Popo"); dao.insert(po);
-		 * po.setCod_parlamentar("005"); po.setNome_parlamentar("Arruda");
-		 * dao.insert(po);
-		 */
+		
+		  //inicializa o banco e cria se ele nao existir 
+//		ParlamentarUserDao dao  = new ParlamentarUserDao(getBaseContext()); 
+//		  Parlamentar po=new Parlamentar();
+//		  po.setId(002);
+//		  po.setNome("Tiririca");
+//		  po.setPartido("pcdob");
+//		  po.setSeguido(false);
+//		  po.setUf("DF");
+//		  dao.insert(po);
+//		  po.setNome_parlamentar("Romario brilha muito no curintias");
+//		  dao.insert(po); po.setCod_parlamentar("004");
+//		  po.setNome_parlamentar("Popo"); dao.insert(po);
+//		  po.setCod_parlamentar("005"); po.setNome_parlamentar("Arruda");
+//		  dao.insert(po);
 
 		if (findViewById(R.id.fragment_container) != null) {
 
@@ -165,18 +169,17 @@ public class GuiMain extends Activity implements
 					btn_sobre_main.setVisibility(View.VISIBLE);
 					btn_mostra_outros.setScaleX(1.0f);
 					btn_mostra_outros.setScaleY(1.0f);
-				} else {
+				}
+				else {
 					btn_pesquisar_parlamentar.setVisibility(View.GONE);
 					btn_politico_main.setVisibility(View.GONE);
 					btn_ranking_main.setVisibility(View.GONE);
 					btn_sobre_main.setVisibility(View.GONE);
 					btn_mostra_outros.setScaleX(0.6f);
 					btn_mostra_outros.setScaleY(0.6f);
-
 				}
 			}
 		});
-
 	}
 
 	@Override
@@ -227,7 +230,5 @@ public class GuiMain extends Activity implements
 			getFragmentManager().executePendingTransactions();
 			detailFragment.setText(parlamentar.getNome());
 		}
-
 	}
-
 }

@@ -1,5 +1,7 @@
 package com.OMM.application.user.model;
 
+import java.util.List;
+
 public class Parlamentar {
 
 	int id;
@@ -13,6 +15,8 @@ public class Parlamentar {
 	boolean seguido;
 
 	byte[] foto;
+
+	List<CotaParlamentar> cotas;
 
 	public Parlamentar() {
 	}
@@ -74,6 +78,14 @@ public class Parlamentar {
 
 	public void setFoto(byte[] foto) {
 		this.foto = foto;
+	}
+
+	public List<CotaParlamentar> getCotas() {
+		return cotas;
+	}
+
+	public void setCotas(List<CotaParlamentar> cotas) {
+		this.cotas = cotas;
 	}
 
 }
